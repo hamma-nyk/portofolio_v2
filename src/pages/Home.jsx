@@ -71,9 +71,9 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section id="home" className="flex flex-col mx-auto justify-center -mt-10 w-full">
+        <section id="home" className="flex flex-col mx-auto justify-center -mt-10">
           <div className="flex flex-col h-screen px-10 w-full items-start justify-center">
-            <h1 className="text-5xl font-[700] text-wrap">
+            <h1 className="text-5xl font-[700]">
               Hello there! 😹
               <br />
               You can call me{" "}
@@ -93,7 +93,7 @@ const Home = () => {
         </section>
         <About goto={AboutSection} />
         <Experiences goto={ExperiencesSection} />
-        <Projects goto={ProjectsSection} />
+        {/* <Projects goto={ProjectsSection} /> */}
       </div>
     </Fragment>
   );
