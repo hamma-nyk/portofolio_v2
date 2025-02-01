@@ -57,7 +57,7 @@ const Home = () => {
                 <path d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z" />
               </svg>
             </div>
-            <div className="flex gap-4">
+            <div className="flex">
               <span className="flex items-center relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
                 <svg
                   className="w-5 h-5"
@@ -84,7 +84,7 @@ const Home = () => {
               I'm a Web Developer
             </h1>
             <CodeTemplate />
-            <div className="flex gap-4 pt-10 text-sm px-10">
+            <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-10">
               <ButtonHome link="#" icon={faDownload} text="Download CV" additionalClass="hidden md:inline lg:inline xl:inline" margin="mr-0" />
               <ButtonHome link="https://github.com/hamma-nyk" icon={faGithub} text="Github" margin="mr-2" />
               <ButtonHome link="https://linkedin.com/in/myikos" icon={faLinkedin} text="Linkedin" margin="mr-2" />
