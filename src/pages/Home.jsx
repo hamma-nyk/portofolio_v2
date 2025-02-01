@@ -72,9 +72,9 @@ const Home = () => {
           </div>
         </section>
         <section id="home" className="flex flex-col mx-auto justify-center -mt-10">
-          <div className="flex flex-col h-screen px-10 w-full items-start justify-center">
-            <h1 className="text-5xl font-[700]">
-              Hello there! 😹
+          <div className="flex flex-col h-screen w-full items-start justify-center">
+            <h1 className="text-5xl font-[700] px-10">
+              Hello there! <span className="hidden sm:inline">😹</span>
               <br />
               You can call me{" "}
               <span className="text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
@@ -84,7 +84,7 @@ const Home = () => {
               I'm a Web Developer
             </h1>
             <CodeTemplate />
-            <div className="flex gap-4 pt-10 text-sm">
+            <div className="flex gap-4 pt-10 text-sm px-10">
               <ButtonHome link="#" icon={faDownload} text="Download CV" additionalClass="hidden md:inline lg:inline xl:inline" margin="mr-0" />
               <ButtonHome link="https://github.com/hamma-nyk" icon={faGithub} text="Github" margin="mr-2" />
               <ButtonHome link="https://linkedin.com/in/myikos" icon={faLinkedin} text="Linkedin" margin="mr-2" />
