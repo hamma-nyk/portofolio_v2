@@ -37,7 +37,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <div ref={HomeSection} className="flex mx-auto h-full bg-neutral-800 flex-col dark:text-white">
+      <div ref={HomeSection} className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white">
         <section id="navbar" className={`flex sticky top-0 w-full justify-center bg-neutral-800 z-50 ${isScroll ? 'shadow-lg transition-all' : ''}`}>
           <div className="flex w-4/5 xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-2/3 h-20 items-center justify-between font-[500]">
             <div className="hidden md:flex lg:flex xl:flex">
