@@ -71,9 +71,9 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section id="home" className="flex flex-col mx-auto justify-center -mt-10">
+        <section id="home" className="flex flex-col mx-auto justify-center -mt-10 w-full">
           <div className="flex flex-col h-screen px-10 w-full items-start justify-center">
-            <h1 className="text-5xl font-[700]">
+            <h1 className="text-5xl font-[700] text-wrap">
               Hello there! 😹
               <br />
               You can call me{" "}
