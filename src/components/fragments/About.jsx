@@ -34,8 +34,8 @@ const About = (props) => {
               seamlessly.
             </p> */}
                     <div className="flex flex-wrap w-11/12 gap-4 mt-6 mx-auto justify-center">
-                        <div class="max-w-md rounded overflow-hidden shadow-lg bg-neutral-700 shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-                            <div class="px-6 py-4">
+                        <div class="flex flex-col max-w-md rounded overflow-hidden shadow-lg bg-neutral-700 shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
+                            <div class="px-6 py-4 h-full">
                                 <div class="font-bold text-xl mb-2">
                                     About Network Infrastructure
                                 </div>
@@ -47,14 +47,14 @@ const About = (props) => {
                                     MikroTik, and Ruijie Reyee.
                                 </p>
                             </div>
-                            <div class="px-6 pt-2 pb-4">
+                            <div class="px-6 pt-2 pb-4 ">
                                 <ButtonCard link="https://www.ui.com/introduction" icon={faCircleQuestion} text="Ubiquiti" />
                                 <ButtonCard link="https://www.mikrotik.com" icon={faCircleQuestion} text="MikroTik" />
                                 <ButtonCard link="https://reyee.ruijie.com" icon={faCircleQuestion} text="Ruijie Reyee" />
                             </div>
                         </div>
-                        <div class="max-w-md rounded overflow-hidden shadow-lg bg-neutral-700 shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-                            <div class="px-6 py-4">
+                        <div class="flex flex-col max-w-md rounded h-auto shadow-lg bg-neutral-700 shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
+                            <div class="px-6 py-4 mb-0 md:mb-4">
                                 <div class="font-bold text-xl mb-2">
                                     About Web Development
                                 </div>
@@ -65,7 +65,7 @@ const About = (props) => {
                                     several frameworks listed below.{" "}
                                 </p>
                             </div>
-                            <div class="px-6 pt-2 pb-2 w-full">
+                            <div class="px-6 pt-2 pb-2 mb-2 mt-0 md:mt-2">
                                 {
                                     Frameworks.map((framework) => {
                                         return <span class="inline-block bg-neutral-800 rounded-sm p-2 text-sm font-semibold text-white mr-2 mb-2">

@@ -93,7 +93,7 @@ const Home = () => {
         </section>
         <About goto={AboutSection} />
         <Experiences goto={ExperiencesSection} />
-        {/* <Projects goto={ProjectsSection} /> */}
+        <Projects goto={ProjectsSection} />
       </div>
     </Fragment>
   );
