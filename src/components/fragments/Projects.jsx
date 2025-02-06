@@ -13,8 +13,8 @@ const Projects = (props) => {
                     <h1 className="text-4xl font-[700] mx-auto">PROJECTS</h1>
                     <div className="flex flex-wrap w-11/12 sm:w-full gap-4 mt-6 mx-auto justify-center">
                         <ProjectCard img="" title={"QR-NBI"} />
-                        <ProjectCard img="" title={"KonekoBOT"} />
-                        <ProjectCard img="" title={"KonekoCert"} />
+                        <ProjectCard img="./assets/image/konekobot.png" title={"KonekoBOT"} />
+                        <ProjectCard img="./assets/image/konekocert.png" title={"KonekoCert"} />
                     </div>
                 </div>
             </section>

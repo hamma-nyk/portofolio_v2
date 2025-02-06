@@ -61,7 +61,7 @@ const About = (props) => {
                                 <p class="text-gray-200 text-base">
                                     I prefer working on the frontend, but that doesn't mean I
                                     can't handle the backend. Therefore, I practice building
-                                    websites that involve databases. I have experience using
+                                    websites that involve databases and APIs. I have experience using
                                     several frameworks listed below.{" "}
                                 </p>
                             </div>
