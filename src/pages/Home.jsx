@@ -8,16 +8,17 @@ import ButtonHome from "../components/elements/ButtonHome";
 import Experiences from "../components/fragments/Experiences";
 import About from "../components/fragments/About";
 import Projects from "../components/fragments/Projects";
-
+import Message from "../components/fragments/Message";
 const Home = () => {
   const [isScroll, setIsScroll] = useState(false);
   const HomeSection = useRef(null);
   const AboutSection = useRef(null);
   const ExperiencesSection = useRef(null);
   const ProjectsSection = useRef(null);
+  const MessageSection = useRef(null);
   const JumpToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,26 +27,49 @@ const Home = () => {
       } else {
         setIsScroll(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <Fragment>
-      <div ref={HomeSection} className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white">
-        <section id="navbar" className={`flex sticky top-0 w-full justify-center bg-neutral-800 z-50 ${isScroll ? 'shadow-lg transition-all' : ''}`}>
+      <div
+        ref={HomeSection}
+        className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white"
+      >
+        <section
+          id="navbar"
+          className={`flex sticky top-0 w-full justify-center bg-neutral-800 z-50 ${
+            isScroll ? "shadow-lg transition-all" : ""
+          }`}
+        >
           <div className="flex w-4/5 xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-2/3 h-20 items-center justify-between font-[500]">
             <div className="hidden md:flex lg:flex xl:flex">
-              <ButtonNav onClick={() => JumpToSection(HomeSection)} text="🙀😼😻" />
-              <ButtonNav onClick={() => JumpToSection(AboutSection)} text="About" />
-              <ButtonNav onClick={() => JumpToSection(ExperiencesSection)} text="Experiences" />
-              <ButtonNav onClick={() => JumpToSection(ProjectsSection)} text="Projects" />
-              <ButtonNav onClick={() => { }} text="Contact" />
+              <ButtonNav
+                onClick={() => JumpToSection(HomeSection)}
+                text="🙀😼😻"
+              />
+              <ButtonNav
+                onClick={() => JumpToSection(AboutSection)}
+                text="About"
+              />
+              <ButtonNav
+                onClick={() => JumpToSection(ExperiencesSection)}
+                text="Experiences"
+              />
+              <ButtonNav
+                onClick={() => JumpToSection(ProjectsSection)}
+                text="Projects"
+              />
+              <ButtonNav
+                onClick={() => JumpToSection(MessageSection)}
+                text="Contact"
+              />
             </div>
             <div className="flex md:hidden lg:hidden xl:hidden">
               <svg
@@ -71,7 +95,10 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section id="home" className="flex flex-col mx-auto justify-center -mt-10">
+        <section
+          id="home"
+          className="flex flex-col mx-auto justify-center -mt-10"
+        >
           <div className="flex flex-col h-screen w-full items-start justify-center">
             <h1 className="text-5xl font-[700] px-10">
               Hello there! <span className="hidden sm:inline">😹</span>
@@ -85,15 +112,32 @@ const Home = () => {
             </h1>
             <CodeTemplate />
             <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-10">
-              <ButtonHome link="#" icon={faDownload} text="Download CV" additionalClass="hidden md:inline lg:inline xl:inline" margin="mr-0" />
-              <ButtonHome link="https://github.com/hamma-nyk" icon={faGithub} text="Github" margin="mr-2" />
-              <ButtonHome link="https://linkedin.com/in/myikos" icon={faLinkedin} text="Linkedin" margin="mr-2" />
+              <ButtonHome
+                link="#"
+                icon={faDownload}
+                text="Download CV"
+                additionalClass="hidden md:inline lg:inline xl:inline"
+                margin="mr-0"
+              />
+              <ButtonHome
+                link="https://github.com/hamma-nyk"
+                icon={faGithub}
+                text="Github"
+                margin="mr-2"
+              />
+              <ButtonHome
+                link="https://linkedin.com/in/myikos"
+                icon={faLinkedin}
+                text="Linkedin"
+                margin="mr-2"
+              />
             </div>
           </div>
         </section>
         <About goto={AboutSection} />
         <Experiences goto={ExperiencesSection} />
         <Projects goto={ProjectsSection} />
+        <Message goto={MessageSection} />
       </div>
     </Fragment>
   );
