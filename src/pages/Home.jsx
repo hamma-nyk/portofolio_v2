@@ -9,6 +9,8 @@ import Experiences from "../components/fragments/Experiences";
 import About from "../components/fragments/About";
 import Projects from "../components/fragments/Projects";
 import Message from "../components/fragments/Message";
+import { motion, AnimatePresence } from "framer-motion";
+
 const Home = () => {
   const [isScroll, setIsScroll] = useState(false);
   const HomeSection = useRef(null);
@@ -16,24 +18,51 @@ const Home = () => {
   const ExperiencesSection = useRef(null);
   const ProjectsSection = useRef(null);
   const MessageSection = useRef(null);
+
+  const words = ["I'm a Web Developer", "I'm an IT Support"];
+  const [index, setIndex] = useState(0);
+  const [maxWidth, setMaxWidth] = useState(0);
+  const measureRef = useRef(null);
+
+  // 🔹 Hitung ulang width saat index berubah / resize layar
+  useEffect(() => {
+    const updateWidth = () => {
+      if (measureRef.current) {
+        setMaxWidth(measureRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+
+    // Gunakan ResizeObserver agar reaktif terhadap perubahan font-size (breakpoint md)
+    const resizeObserver = new ResizeObserver(updateWidth);
+    if (measureRef.current) {
+      resizeObserver.observe(measureRef.current);
+    }
+
+    window.addEventListener("resize", updateWidth);
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      resizeObserver.disconnect();
+    };
+  }, [index]);
+
+  // 🔹 Ganti teks setiap 2 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   const JumpToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  // 🔹 Navbar shadow saat scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
-    };
-
+    const handleScroll = () => setIsScroll(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -42,10 +71,13 @@ const Home = () => {
         ref={HomeSection}
         className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white"
       >
+        {/* 🔹 NAVBAR */}
         <section
           id="navbar"
-          className={`flex sticky top-0 w-full justify-center bg-neutral-800 z-50 ${
-            isScroll ? "shadow-lg transition-all" : ""
+          className={`flex sticky top-0 w-full justify-center z-50 ${
+            isScroll
+              ? "shadow-lg transition-all bg-neutral-900/90 duration-300 ease-in-out backdrop-blur-md"
+              : "bg-neutral-800 transition-all duration-300 ease-in-out"
           }`}
         >
           <div className="flex w-4/5 xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-2/3 h-20 items-center justify-between font-[500]">
@@ -78,62 +110,79 @@ const Home = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
               >
-                <path d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z" />
+                <path d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z" />
               </svg>
-            </div>
-            <div className="flex">
-              <span className="flex items-center relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                >
-                  <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
-                </svg>
-              </span>
             </div>
           </div>
         </section>
+
+        {/* 🔹 HOME SECTION */}
         <section
           id="home"
           className="flex flex-col mx-auto justify-center -mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
-            <h1 className="text-5xl font-[700] px-10">
+            <h1 className="text-4xl md:text-5xl font-[700] px-10 w-full relative">
               Hello there! <span className="hidden sm:inline">😹</span>
               <br />
               You can call me{" "}
-              <span className="text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
+              <span className="text-4xl md:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
                 Iko
               </span>
               <br />
-              I'm a Web Developer
+              <div
+                className="inline-block overflow-hidden align-top mt-1"
+                style={{
+                  height: "1.2em",
+                  minWidth: maxWidth ? `${maxWidth}px` : "auto",
+                }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={index}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: "0%", opacity: 1 }}
+                    exit={{ y: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="block font-[700] text-blue-400 text-4xl md:text-5xl"
+                  >
+                    {words[index]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+              {/* 🔹 Hidden element for width measurement */}
+              <span
+                ref={measureRef}
+                className="opacity-0 absolute left-0 top-0 font-[700] text-4xl md:text-5xl whitespace-nowrap pointer-events-none select-none"
+              >
+                I'm a Web Developer
+              </span>
             </h1>
+
             <CodeTemplate />
             <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-10">
               <ButtonHome
                 link="#"
                 icon={faDownload}
                 text="Download CV"
-                additionalClass="hidden md:inline lg:inline xl:inline"
-                margin="mr-0"
+                additionalClass="hidden sm:inline"
               />
               <ButtonHome
                 link="https://github.com/hamma-nyk"
                 icon={faGithub}
                 text="Github"
-                margin="mr-2"
+                additionalClass={"ml-2 sm:ml-0"}
               />
               <ButtonHome
                 link="https://linkedin.com/in/myikos"
                 icon={faLinkedin}
                 text="Linkedin"
-                margin="mr-2"
+                additionalClass={"ml-2 sm:ml-0"}
               />
             </div>
           </div>
         </section>
+
         <About goto={AboutSection} />
         <Experiences goto={ExperiencesSection} />
         <Projects goto={ProjectsSection} />
