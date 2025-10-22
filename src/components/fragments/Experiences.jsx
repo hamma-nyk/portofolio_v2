@@ -73,7 +73,9 @@ const Experiences = (props) => {
         ref={goto}
         className="flex flex-col ml-5 sm:mx-10 justify-center py-20"
       >
-        <h1 className="text-4xl font-[700] mx-auto mt-10">EXPERIENCES</h1>
+        <h1 className="text-3xl sm:text-4xl font-[700] mx-auto mt-10">
+          EXPERIENCES
+        </h1>
         <p className="w-11/12 sm:w-2/3 mx-auto mt-4 text-center leading-relaxed text-gray-200 mb-10">
           A <span className="text-blue-400 font-semibold">summary</span> of my{" "}
           <span className="text-purple-400 font-semibold">journey</span>.

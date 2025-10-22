@@ -69,7 +69,7 @@ const Home = () => {
     <Fragment>
       <div
         ref={HomeSection}
-        className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white"
+        className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white "
       >
         {/* 🔹 NAVBAR */}
         <section
@@ -80,8 +80,8 @@ const Home = () => {
               : "bg-neutral-800 transition-all duration-300 ease-in-out"
           }`}
         >
-          <div className="flex w-4/5 xl:w-2/3 lg:w-2/3 md:w-2/3 sm:w-2/3 h-20 items-center justify-between font-[500]">
-            <div className="hidden md:flex lg:flex xl:flex">
+          <div className="flex w-4/5 sm:w-2/3 h-20 items-center justify-between font-[500]">
+            <div className="hidden sm:flex">
               <ButtonNav
                 onClick={() => JumpToSection(HomeSection)}
                 text="🙀😼😻"
@@ -103,7 +103,7 @@ const Home = () => {
                 text="Contact"
               />
             </div>
-            <div className="flex md:hidden lg:hidden xl:hidden">
+            <div className="flex sm:hidden">
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -122,11 +122,12 @@ const Home = () => {
           className="flex flex-col mx-auto justify-center -mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
-            <h1 className="text-4xl md:text-5xl font-[700] px-10 w-full relative">
+            <h1 className="text-3xl md:text-5xl font-[700] px-5 relative">
+              {" "}
               Hello there! <span className="hidden sm:inline">😹</span>
               <br />
               You can call me{" "}
-              <span className="text-4xl md:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
+              <span className="text-3xl sm:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
                 Iko
               </span>
               <br />
@@ -144,7 +145,7 @@ const Home = () => {
                     animate={{ y: "0%", opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="block font-[700] text-blue-400 text-4xl md:text-5xl"
+                    className="block font-[700] text-blue-400 text-3xl sm:text-5xl"
                   >
                     {words[index]}
                   </motion.span>
@@ -153,14 +154,14 @@ const Home = () => {
               {/* 🔹 Hidden element for width measurement */}
               <span
                 ref={measureRef}
-                className="opacity-0 absolute left-0 top-0 font-[700] text-4xl md:text-5xl whitespace-nowrap pointer-events-none select-none"
+                className="opacity-0 absolute left-0 top-0 font-[700] text-3xl sm:text-5xl whitespace-nowrap pointer-events-none select-none"
               >
                 I'm a Web Developer
               </span>
             </h1>
 
             <CodeTemplate />
-            <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-10">
+            <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-5">
               <ButtonHome
                 link="#"
                 icon={faDownload}

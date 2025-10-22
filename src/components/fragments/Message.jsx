@@ -37,7 +37,7 @@ const Message = (props) => {
         className="flex flex-col w-full sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto justify-center mb-18 lg:mb-0 xl:mb-0"
       >
         <div className="flex flex-col w-full h-full px-2 md:px-10 items-start justify-center mt-26">
-          <h1 className="text-4xl font-[700] mx-auto">CONTACT</h1>
+          <h1 className="text-3xl sm:text-4xl font-[700] mx-auto">CONTACT</h1>
           <div className="flex flex-wrap w-11/12 sm:w-full gap-4 mt-6 mx-auto justify-center">
             <form
               className="transition-colors duration-300 px-4 pt-2 w-full"
