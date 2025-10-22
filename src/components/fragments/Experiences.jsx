@@ -60,7 +60,7 @@ const Experiences = (props) => {
         ref={goto}
         className="flex flex-col mx-5 sm:mx-10 justify-center py-20"
       >
-        <h1 className="text-4xl font-[700] mx-auto mb-10">EXPERIENCES</h1>
+        <h1 className="text-4xl font-[700] mx-auto mb-10 mt-10">EXPERIENCES</h1>
 
         <div className="relative w-full max-w-5xl mx-auto">
           {/* Vertical Line */}

@@ -28,11 +28,11 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
             onClick={() => setOpen(!open)}
           >
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-600">
+              <div className="w-14 h-14 rounded-lg bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-600">
                 <img
                   src={img}
                   alt={title}
-                  className="object-contain w-10 h-10"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="text-left">
