@@ -1,33 +1,44 @@
 import { Fragment } from "react";
 import ProjectCard from "../elements/ProjectCard";
-const Projects = (props) => {
-  const { goto } = props;
+
+const Projects = ({ goto }) => {
+  const projects = [
+    {
+      title: "QRNBI",
+      img: "./assets/image/qrnbi.png",
+      desc: "QR code generator for PT Nusantara Building Industries operational use. Simple, fast, and ad-free.",
+      link: "https://qrnbi.web.id/",
+      tech: ["ReactJS", "TailwindCSS"],
+    },
+    {
+      title: "KonekoBot",
+      img: "./assets/image/konekobot.png",
+      desc: "WhatsApp bot for automating tasks.",
+      link: "https://konekobot.web.id/",
+      tech: ["NodeJS", "ReactJS", "Flask"],
+    },
+    {
+      title: "KonekoCert",
+      img: "./assets/image/konekocert.png",
+      desc: "Fake course certificate generator.",
+      link: "https://konekocert.web.id/",
+      tech: ["ReactJS", "TailwindCSS"],
+    },
+  ];
+
   return (
     <Fragment>
       <section
         id="projects"
         ref={goto}
-        className="flex flex-col mx-auto justify-center mb-18 lg:mb-0 xl:mb-0"
+        className="flex flex-col mx-auto justify-center py-20 px-5"
       >
-        <div className="flex flex-col h-full px-2 md:px-10 w-full items-start justify-center mt-26">
-          <h1 className="text-4xl font-[700] mx-auto">PROJECTS</h1>
-          <div className="flex flex-wrap w-11/12 sm:w-full gap-4 mt-6 mx-auto justify-center">
-            <ProjectCard
-              img="./assets/image/qrnbi.png"
-              title={"QR-NBI"}
-              link={"https://qrnbi.web.id/"}
-            />
-            <ProjectCard
-              img="./assets/image/konekobot.png"
-              title={"KonekoBot"}
-              link={"https://konekobot.web.id/"}
-            />
-            <ProjectCard
-              img="./assets/image/konekocert.png"
-              title={"KonekoCert"}
-              link={"https://konekocert.web.id/"}
-            />
-          </div>
+        <h1 className="text-4xl font-bold text-center mb-10 mt-10">PROJECTS</h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {projects.map((project, i) => (
+            <ProjectCard key={i} {...project} />
+          ))}
         </div>
       </section>
     </Fragment>

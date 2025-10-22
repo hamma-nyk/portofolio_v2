@@ -7,16 +7,16 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
   return (
     <Fragment>
       <div
-        className={`relative flex flex-col sm:flex-row items-center sm:items-start ${
+        className={`relative flex flex-col sm:flex-row items-center sm:items-start h-full ${
           side === "right" ? "sm:justify-end" : "sm:justify-start"
         }`}
       >
         {/* Dot */}
-        <div className="absolute left-[-6px] sm:left-1/2 transform sm:-translate-x-1/2 bg-blue-400 w-4 h-4 rounded-full border-4 border-neutral-800 z-10"></div>
+        <div className="absolute top-1/2 left-[-6px] sm:left-1/2 transform sm:-translate-x-1/2 bg-blue-400 w-4 h-4 rounded-full border-3 border-neutral-800 z-10"></div>
 
         {/* Card */}
         <div
-          className={`bg-neutral-700 p-5 rounded-xl shadow-md w-[90%] sm:w-[45%] ${
+          className={`bg-neutral-700/60 backdrop-blur border border-neutral-700 p-5 rounded-xl shadow-md w-[90%] sm:w-[45%] ${
             side === "right"
               ? "sm:ml-auto sm:text-left"
               : "sm:mr-auto sm:text-right"
@@ -28,7 +28,7 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
             onClick={() => setOpen(!open)}
           >
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-lg bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-600">
+              <div className="min-w-14 min-h-14 h-14 w-14 rounded-lg bg-neutral-800 flex items-center justify-center overflow-hidden border border-neutral-600">
                 <img
                   src={img}
                   alt={title}
@@ -55,13 +55,13 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
           {/* Expandable content */}
           <div
             className={`duration-300 overflow-hidden ${
-              open ? "max-h-60 opacity-100 mt-3" : "max-h-0 opacity-0"
+              open ? "max-h-100 opacity-100 mt-3" : "max-h-0 opacity-0"
             }`}
           >
             <ul
-              className={`text-gray-300 text-sm list-disc list-inside ${
-                side === "right" ? "ml-2 text-left" : "mr-2 text-left"
-              } space-y-1`}
+              className={`text-gray-300 text-sm list-disc list-outside leading-relaxed space-y-1 ${
+                side === "right" ? "pl-5 text-left" : "pl-5 text-left"
+              }`}
             >
               {jobdesk.map((item, index) => (
                 <li key={index}>{item}</li>
