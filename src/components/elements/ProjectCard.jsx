@@ -8,7 +8,7 @@ const ProjectCard = ({ title, img, link, desc, tech }) => {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative bg-neutral-700/60 border border-neutral-700 rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+        className="group relative bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
       >
         {/* Gambar */}
         <div className="h-48 overflow-hidden">

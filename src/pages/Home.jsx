@@ -133,7 +133,7 @@ const Home = () => {
           <div className="flex flex-col h-screen w-full items-start justify-center">
             <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">
               {" "}
-              Hello there! <span className="hidden sm:inline">😹</span>
+              Hello there! <span className="sm:inline">😹</span>
               <br />
               You can call me{" "}
               <span className="text-3xl sm:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
