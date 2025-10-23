@@ -62,7 +62,7 @@ const About = (props) => {
         <div className="flex flex-col h-full px-2 sm:px-10 w-full items-start justify-center">
           <h1 className="text-3xl sm:text-4xl font-[700] mx-auto">ABOUT</h1>
           <p className="w-11/12 sm:w-2/3 mx-auto mt-4 text-center leading-relaxed text-gray-200">
-            Hello! 👋 I work in two areas that I really enjoy —{" "}
+            Hello! 👋 I work in two areas that I really enjoy,{" "}
             <span className="text-blue-400 font-semibold">IT Support</span> and{" "}
             <span className="text-purple-400 font-semibold">
               Web Development
@@ -72,8 +72,8 @@ const About = (props) => {
           </p>
 
           <div className="flex flex-wrap w-full gap-4 mt-6 mx-auto justify-center">
-            <div class="flex flex-col max-w-md sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-blue-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-              <div class="px-6 py-4 h-full">
+            <div className="flex flex-col max-w-md mx-2 sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-blue-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
+              <div className="px-6 py-4 h-full">
                 <div className="font-bold text-xl mb-3 text-blue-400">
                   <span className="flex items-center">
                     <MonitorCog className=" mr-2 " strokeWidth={2.5} />
@@ -87,7 +87,7 @@ const About = (props) => {
                   and Ruijie Reyee.
                 </p>
               </div>
-              <div class="px-6 pt-2 pb-4">
+              <div className="px-6 pt-2 pb-4">
                 <ButtonCard
                   link="https://www.ui.com/introduction"
                   icon={faCircleQuestion}
@@ -105,8 +105,8 @@ const About = (props) => {
                 />
               </div>
             </div>
-            <div class="flex flex-col max-w-md sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-purple-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-              <div class="px-6 py-4 mb-0 md:mb-4">
+            <div className="flex flex-col max-w-md mx-2 sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-purple-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
+              <div className="px-6 py-4 mb-0 md:mb-4">
                 <div className="font-bold text-xl mb-3 text-purple-400">
                   <span className="flex items-center">
                     <CodeXml className="mr-2 " strokeWidth={2.5} />
@@ -120,10 +120,13 @@ const About = (props) => {
                   systems that make work easier for both users and teams.
                 </p>
               </div>
-              <div class="px-6 pt-2 pb-4">
+              <div className="px-6 pt-2 pb-4">
                 {techs.map((t) => {
                   return (
-                    <span class="inline-block hover:-translate-y-[2px] duration-300 transition ease-in-out border border-neutral-600 text-md bg-neutral-800 rounded-sm p-2 text-center text-white mr-2 mb-1">
+                    <span
+                      key={t.name}
+                      className="inline-block hover:-translate-y-[2px] duration-300 transition ease-in-out border border-neutral-600 text-md bg-neutral-800 rounded-sm p-2 text-center text-white mr-2 mb-1"
+                    >
                       <a href={t.link} target="_blank">
                         {t.icon}
                       </a>

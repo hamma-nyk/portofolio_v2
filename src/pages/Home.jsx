@@ -122,7 +122,7 @@ const Home = () => {
           className="flex flex-col mx-auto justify-center -mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
-            <h1 className="text-3xl md:text-5xl font-[700] px-5 relative">
+            <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative">
               {" "}
               Hello there! <span className="hidden sm:inline">😹</span>
               <br />
