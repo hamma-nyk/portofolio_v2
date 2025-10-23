@@ -60,7 +60,9 @@ const About = (props) => {
         className="flex flex-col sm:h-screen mx-auto justify-center w"
       >
         <div className="flex flex-col h-full px-2 sm:px-10 w-full items-start justify-center">
-          <h1 className="text-3xl sm:text-4xl font-[700] mx-auto">ABOUT</h1>
+          <h1 className="text-3xl sm:text-4xl font-[700] mx-auto text-white">
+            ABOUT
+          </h1>
           <p className="w-11/12 sm:w-2/3 mx-auto mt-4 text-center leading-relaxed text-gray-200">
             Hello! 👋 I work in two areas that I really enjoy,{" "}
             <span className="text-blue-400 font-semibold">IT Support</span> and{" "}

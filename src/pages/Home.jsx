@@ -1,15 +1,16 @@
 import { Fragment, useState, useEffect, useRef } from "react";
-import ButtonNav from "../components/elements/ButtonNav";
-import CodeTemplate from "../components/elements/CodeTemplate";
+import ButtonNav from "@/components/elements/ButtonNav";
+import CodeTemplate from "@/components/elements/CodeTemplate";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import ButtonHome from "../components/elements/ButtonHome";
-import Experiences from "../components/fragments/Experiences";
-import About from "../components/fragments/About";
-import Projects from "../components/fragments/Projects";
+import ButtonHome from "@/components/elements/ButtonHome";
+import Experiences from "@/components/fragments/Experiences";
+import About from "@/components/fragments/About";
+import Projects from "@/components/fragments/Projects";
 import Message from "../components/fragments/Message";
 import { motion, AnimatePresence } from "framer-motion";
+import { Particles } from "@/components/ui/shadcn-io/particles";
 
 const Home = () => {
   const [isScroll, setIsScroll] = useState(false);
@@ -19,7 +20,7 @@ const Home = () => {
   const ProjectsSection = useRef(null);
   const MessageSection = useRef(null);
 
-  const words = ["I'm a Web Developer", "I'm an IT Support"];
+  const words = ["I'm an IT Support", "I'm a Web Developer"];
   const [index, setIndex] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
   const measureRef = useRef(null);
@@ -67,6 +68,14 @@ const Home = () => {
 
   return (
     <Fragment>
+      <Particles
+        className="absolute inset-0 fixed z-0 pointer-events-none"
+        quantity={100}
+        ease={80}
+        staticity={50}
+        color="#ffffff"
+        size={0.8}
+      />
       <div
         ref={HomeSection}
         className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white "
@@ -84,7 +93,7 @@ const Home = () => {
             <div className="hidden sm:flex">
               <ButtonNav
                 onClick={() => JumpToSection(HomeSection)}
-                text="🙀😼😻"
+                text="Home"
               />
               <ButtonNav
                 onClick={() => JumpToSection(AboutSection)}
@@ -122,7 +131,7 @@ const Home = () => {
           className="flex flex-col mx-auto justify-center -mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
-            <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative">
+            <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">
               {" "}
               Hello there! <span className="hidden sm:inline">😹</span>
               <br />
@@ -187,7 +196,7 @@ const Home = () => {
         <About goto={AboutSection} />
         <Experiences goto={ExperiencesSection} />
         <Projects goto={ProjectsSection} />
-        <Message goto={MessageSection} />
+        {/* <Message goto={MessageSection} /> */}
       </div>
     </Fragment>
   );
