@@ -8,7 +8,6 @@ import ButtonHome from "@/components/elements/ButtonHome";
 import Experiences from "@/components/fragments/Experiences";
 import About from "@/components/fragments/About";
 import Projects from "@/components/fragments/Projects";
-import Message from "../components/fragments/Message";
 import { motion, AnimatePresence } from "framer-motion";
 import { Particles } from "@/components/ui/shadcn-io/particles";
 
