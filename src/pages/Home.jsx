@@ -128,7 +128,7 @@ const Home = () => {
         {/* 🔹 HOME SECTION */}
         <section
           id="home"
-          className="flex flex-col mx-auto justify-center -mt-10"
+          className="flex flex-col mx-auto justify-center xl:-mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
             <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">

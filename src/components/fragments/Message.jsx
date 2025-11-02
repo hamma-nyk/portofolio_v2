@@ -69,7 +69,7 @@ const Message = ({ goto }) => {
       <section
         id="messages"
         ref={goto}
-        className="flex flex-col w-full  justify-center my-16"
+        className="flex flex-col w-full justify-center my-16 xl:my-0 xl:h-screen"
       >
         <h1 className="text-3xl sm:text-4xl font-[700] text-center text-white">
           CONTACT
