@@ -57,7 +57,7 @@ const About = (props) => {
       <section
         id="about"
         ref={goto}
-        className="flex flex-col xl:mt-0 xl:h-screen mx-auto justify-center w"
+        className="flex flex-col xl:mt-0 xl:h-screen mx-auto justify-center"
       >
         <div className="flex flex-col h-full px-2 sm:px-10 w-full items-start justify-center">
           <h1 className="text-3xl sm:text-4xl font-[700] mx-auto text-white mt-30 xl:mt-0">

@@ -115,25 +115,25 @@ const Home = () => {
             <div className="flex sm:hidden justify-between w-full text-gray-200">
               <button
                 onClick={() => JumpToSection(HomeSection)}
-                className={`p-3 rounded-full transition-all`}
+                className={`p-3 rounded-full transition-all cursor-pointer`}
               >
                 <House className="w-6 h-6" />
               </button>
               <button
                 onClick={() => JumpToSection(AboutSection)}
-                className={`p-3 rounded-full transition-all`}
+                className={`p-3 rounded-full transition-all cursor-pointer`}
               >
                 <User className="w-6 h-6" />
               </button>
               <button
                 onClick={() => JumpToSection(ExperiencesSection)}
-                className={`p-3 rounded-full transition-all`}
+                className={`p-3 rounded-full transition-all cursor-pointer`}
               >
                 <Briefcase className="w-6 h-6" />
               </button>
               <button
                 onClick={() => JumpToSection(ProjectsSection)}
-                className={`p-3 rounded-full transition-all`}
+                className={`p-3 rounded-full transition-all cursor-pointer`}
               >
                 <FolderKanban className="w-6 h-6" />
               </button>
