@@ -11,7 +11,7 @@ import Projects from "@/components/fragments/Projects";
 import Message from "@/components/fragments/Message";
 import { motion, AnimatePresence } from "framer-motion";
 import { Particles } from "@/components/ui/shadcn-io/particles";
-
+import { House, User, Briefcase, FolderKanban, Mail } from "lucide-react";
 const Home = () => {
   const [isScroll, setIsScroll] = useState(false);
   const HomeSection = useRef(null);
@@ -85,8 +85,8 @@ const Home = () => {
           id="navbar"
           className={`flex sticky top-0 w-full justify-center z-50 ${
             isScroll
-              ? "shadow-lg transition-all bg-neutral-900/90 duration-300 ease-in-out backdrop-blur-md"
-              : "bg-neutral-800 transition-all duration-300 ease-in-out"
+              ? "shadow-lg transition-all bg-neutral-900/90 duration-300 ease-in-out backdrop-blur-md border-b border-neutral-700/50"
+              : "bg-neutral-800 transition-all duration-300 ease-in-out border-b border-neutral-700/0"
           }`}
         >
           <div className="flex w-4/5 sm:w-2/3 h-20 items-center justify-between font-[500]">
@@ -112,15 +112,37 @@ const Home = () => {
                 text="Contact"
               />
             </div>
-            <div className="flex sm:hidden">
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
+            <div className="flex sm:hidden justify-between w-full text-gray-200">
+              <button
+                onClick={() => JumpToSection(HomeSection)}
+                className={`p-3 rounded-full transition-all`}
               >
-                <path d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z" />
-              </svg>
+                <House className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => JumpToSection(AboutSection)}
+                className={`p-3 rounded-full transition-all`}
+              >
+                <User className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => JumpToSection(ExperiencesSection)}
+                className={`p-3 rounded-full transition-all`}
+              >
+                <Briefcase className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => JumpToSection(ProjectsSection)}
+                className={`p-3 rounded-full transition-all`}
+              >
+                <FolderKanban className="w-6 h-6" />
+              </button>
+              <button
+                onClick={() => JumpToSection(MessageSection)}
+                className={`p-3 rounded-full transition-all`}
+              >
+                <Mail className="w-6 h-6" />
+              </button>
             </div>
           </div>
         </section>
@@ -128,7 +150,7 @@ const Home = () => {
         {/* 🔹 HOME SECTION */}
         <section
           id="home"
-          className="flex flex-col mx-auto justify-center xl:-mt-10"
+          className="flex flex-col mx-auto justify-center -mt-10"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
             <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">

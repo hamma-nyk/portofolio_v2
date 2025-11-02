@@ -132,12 +132,12 @@ const Message = ({ goto }) => {
               <form
                 ref={form}
                 onSubmit={sendEmail}
-                className="flex flex-col gap-4 mx-auto bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-2xl shadow-xl p-6 sm:p-8 hover:border-blue-400/20 transition-all duration-300 min-h-[400px]"
+                className="flex flex-col gap-4 mx-auto bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-2xl shadow-xl p-6 sm:p-8 hover:border-blue-400/20 transition-all duration-300 min-h-[420px]"
               >
                 <input
                   type="text"
                   name="name"
-                  placeholder="Your Name / Instance"
+                  placeholder="Your name / instance..."
                   required
                   className="placeholder:text-gray-400 text-sm bg-neutral-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                 />
@@ -145,14 +145,14 @@ const Message = ({ goto }) => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your Email"
+                  placeholder="Your email..."
                   required
                   className="placeholder:text-gray-400 text-sm bg-neutral-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                 />
 
                 <textarea
                   name="message"
-                  placeholder="Your Message"
+                  placeholder="Type your message here..."
                   required
                   rows="6"
                   className="placeholder:text-gray-400 text-sm bg-neutral-700 text-white rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
@@ -192,7 +192,7 @@ const Message = ({ goto }) => {
             {activeTab === "telegram" && (
               <form
                 onSubmit={sendMessage}
-                className="flex flex-col justify-between mx-auto bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-2xl shadow-xl p-6 sm:p-8 hover:border-purple-400/20 transition-all duration-300 min-h-[400px]"
+                className="flex flex-col justify-between mx-auto bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-2xl shadow-xl p-6 sm:p-8 hover:border-purple-400/20 transition-all duration-300 min-h-[420px]"
               >
                 {/* Name + Username */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-4">
@@ -236,7 +236,7 @@ const Message = ({ goto }) => {
                   <textarea
                     required
                     name="message"
-                    placeholder="Type your message..."
+                    placeholder="Type your message here..."
                     rows="6"
                     className="placeholder:text-gray-400 flex-1 bg-transparent border-b border-neutral-600 focus:border-purple-400 focus:outline-none text-white py-2 px-1 text-sm resize-none"
                   ></textarea>
