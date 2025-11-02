@@ -79,7 +79,7 @@ const Projects = ({ goto }) => {
       <section
         id="projects"
         ref={goto}
-        className="flex flex-col mx-auto justify-center py-20 px-5"
+        className="flex flex-col mx-auto justify-center py-20 px-5 -mb-10 sm:mb-0"
       >
         <h1 className="text-white text-3xl sm:text-4xl font-bold text-center mt-10">
           PROJECTS

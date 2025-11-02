@@ -69,9 +69,9 @@ const Message = ({ goto }) => {
       <section
         id="messages"
         ref={goto}
-        className="flex flex-col w-full justify-center py-20 h-full xxl:h-screen"
+        className="flex flex-col w-full justify-center py-20 h-full"
       >
-        <h1 className="text-3xl sm:text-4xl font-[700] text-center text-white mt-10 xxl:mt-0">
+        <h1 className="text-3xl sm:text-4xl font-[700] text-center text-white mt-10">
           CONTACT
         </h1>
         <p className="w-11/12 sm:w-2/3 sm:pr-0 pr-5 mx-auto mt-4 text-center leading-relaxed text-gray-200 mb-5">

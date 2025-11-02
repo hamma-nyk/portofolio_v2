@@ -139,7 +139,7 @@ const Home = () => {
               </button>
               <button
                 onClick={() => JumpToSection(MessageSection)}
-                className={`p-3 rounded-full transition-all`}
+                className={`p-3 rounded-full transition-all cursor-pointer`}
               >
                 <Mail className="w-6 h-6" />
               </button>
