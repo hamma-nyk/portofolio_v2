@@ -4,6 +4,20 @@ import ProjectCard from "../elements/ProjectCard";
 const Projects = ({ goto }) => {
   const projects = [
     {
+      title: "MDB Access to SQL Server",
+      img: "./assets/image/mdbconvert.png",
+      desc: "Shcedule and convert data from Local machine MDB to SQL Server",
+      descModal: "This tools is for local use. Contact me if you want a demo.",
+      tech: ["Python", "Pyodbc"],
+    },
+    {
+      title: "my-ytdlp",
+      img: "./assets/image/ytdlp.png",
+      desc: "YtDlp Web UI using ReactJS",
+      link: "https://my-ytdlp.vercel.app/",
+      tech: ["ReactJS", "TailwindCSS", "shadCN", "FastAPI"],
+    },
+    {
       title: "MonoBlog",
       img: "./assets/image/monoblog.png",
       desc: "Simple blog using NextJS",

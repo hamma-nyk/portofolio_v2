@@ -71,7 +71,7 @@ const Experiences = (props) => {
       <section
         id="experiences"
         ref={goto}
-        className="flex flex-col ml-5 sm:mx-10 justify-center py-20 -mb-10 sm:mb-0"
+        className="flex flex-col ml-5 sm:mx-10 justify-center py-20 -mb-15 sm:-mb-0"
       >
         <h1 className="text-white text-3xl sm:text-4xl font-[700] pr-5 text-center mt-10 mx-auto sm:pr-0">
           EXPERIENCES
