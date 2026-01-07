@@ -16,7 +16,7 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
 
         {/* Card */}
         <div
-          className={`bg-neutral-700/60 backdrop-blur border border-neutral-700 p-5 rounded-xl shadow-lg w-[90%] sm:w-[45%] ${
+          className={`bg-neutral-800/50 backdrop-blur border border-neutral-700 p-5 rounded-xl shadow-lg w-[90%] sm:w-[45%] ${
             side === "right"
               ? "sm:ml-auto sm:text-left"
               : "sm:mr-auto sm:text-right"

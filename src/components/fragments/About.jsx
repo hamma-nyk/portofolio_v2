@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 import ButtonCard from "../elements/ButtonCard";
 import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
-import { CodeXml, MonitorCog } from "lucide-react";
+import { MonitorCog, CodeXml, ExternalLink } from "lucide-react";
+
 import {
   SiReact,
   SiNextdotjs,
@@ -57,84 +58,119 @@ const About = (props) => {
       <section
         id="about"
         ref={goto}
-        className="flex flex-col xl:mt-0 xl:h-screen mx-auto justify-center"
+        className="relative w-full py-24 px-4 overflow-hidden min-h-screen flex flex-col justify-center"
       >
-        <div className="flex flex-col h-full px-2 sm:px-10 w-full items-start justify-center">
-          <h1 className="text-3xl sm:text-4xl font-[700] mx-auto text-white mt-30 xl:mt-0">
-            ABOUT
-          </h1>
-          <p className="w-11/12 sm:w-2/3 mx-auto mt-4 text-center leading-relaxed text-gray-200">
-            Hello! 👋 I work in two areas that I really enjoy,{" "}
-            <span className="text-blue-400 font-semibold">IT Support</span> and{" "}
-            <span className="text-purple-400 font-semibold">
-              Web Development
-            </span>
-            . They’re different fields, but both teach me how technology helps
-            people do their work better.
-          </p>
+        {/* --- Background Glow Effects --- */}
+        <div className="absolute top-30 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-30 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-          <div className="flex flex-wrap w-full gap-4 mt-6 mx-auto justify-center">
-            <div className="flex flex-col max-w-md mx-2 sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-blue-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-              <div className="px-6 py-4 h-full">
-                <div className="font-bold text-xl mb-3 text-blue-400">
-                  <span className="flex items-center">
-                    <MonitorCog className=" mr-2 " strokeWidth={2.5} />
-                    IT Support
-                  </span>
-                </div>{" "}
-                <p className="text-gray-100 leading-relaxed text-sm">
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          {/* --- Header Utama --- */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
+              About{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Me
+              </span>
+            </h1>
+            <p className="w-full sm:w-2/3 mx-auto text-gray-400 leading-relaxed text-sm sm:text-base">
+              Hello! 👋 I work in two areas that I really enjoy:
+              <span className="text-blue-400 font-semibold">
+                {" "}
+                IT Support
+              </span>{" "}
+              and
+              <span className="text-purple-400 font-semibold">
+                {" "}
+                App Development
+              </span>
+              . They’re different fields, but both teach me how technology helps
+              people do their work better.
+            </p>
+          </div>
+
+          {/* --- Cards Container --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* === CARD 1: IT SUPPORT === */}
+            <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-3 bg-blue-500/10 rounded-xl text-blue-400 group-hover:bg-blue-500/20 transition-colors">
+                    <MonitorCog size={32} strokeWidth={2} />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">IT Support</h2>
+                </div>
+
+                <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
                   I handle troubleshooting for both hardware and software,
                   maintain networks, and support ERP system operations. I’ve
-                  worked with various devices and tools from Ubiquiti, MikroTik,
-                  and Ruijie Reyee.
+                  worked with various enterprise devices and tools to ensure
+                  seamless connectivity.
                 </p>
-              </div>
-              <div className="px-6 pt-2 pb-4">
-                <ButtonCard
-                  link="https://www.ui.com/introduction"
-                  icon={faCircleQuestion}
-                  text="Ubiquiti"
-                />
-                <ButtonCard
-                  link="https://www.mikrotik.com"
-                  icon={faCircleQuestion}
-                  text="MikroTik"
-                />
-                <ButtonCard
-                  link="https://reyee.ruijie.com"
-                  icon={faCircleQuestion}
-                  text="Ruijie Reyee"
-                />
+
+                {/* Buttons / Tools Links */}
+                <div className="flex flex-wrap gap-3 mt-auto">
+                  {[
+                    {
+                      name: "Ubiquiti",
+                      link: "https://www.ui.com/introduction",
+                    },
+                    { name: "MikroTik", link: "https://www.mikrotik.com" },
+                    { name: "Ruijie Reyee", link: "https://reyee.ruijie.com" },
+                  ].map((item, idx) => (
+                    <a
+                      key={idx}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-blue-600/20 hover:text-blue-400 border border-neutral-700 hover:border-blue-500/50 rounded-lg text-sm text-gray-300 transition-all duration-300"
+                    >
+                      {/* Opsional: Jika Anda pakai FontAwesome untuk circle question, bisa masukkan di sini */}
+                      <span>{item.name}</span>
+                      <ExternalLink size={12} className="opacity-50" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-            <div className="flex flex-col max-w-md mx-2 sm:max-w-lg rounded-xl overflow-hidden shadow-lg border-2 border-purple-400/20 bg-neutral-700/60 backdrop-blur shadow-md hover:-translate-y-[2px] duration-300 transition ease-in-out">
-              <div className="px-6 py-4 mb-0 md:mb-4">
-                <div className="font-bold text-xl mb-3 text-purple-400">
-                  <span className="flex items-center">
-                    <CodeXml className="mr-2 " strokeWidth={2.5} />
-                    Web Developer
-                  </span>
-                </div>{" "}
-                <p className="text-gray-100 leading-relaxed text-sm">
+
+            {/* === CARD 2: APP DEVELOPER === */}
+            <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-purple-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
+              <div className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-3 bg-purple-500/10 rounded-xl text-purple-400 group-hover:bg-purple-500/20 transition-colors">
+                    <CodeXml size={32} strokeWidth={2} />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">
+                    App Developer
+                  </h2>
+                </div>
+
+                <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
                   I build simple and functional web applications using modern
-                  technologies. I usually work with the tech stack listed below,
-                  focusing on creating clean, efficient, and user-friendly
-                  systems that make work easier for both users and teams.
+                  technologies. I focus on creating clean, efficient, and
+                  user-friendly systems that facilitate team productivity.
                 </p>
-              </div>
-              <div className="px-6 pt-2 pb-4">
-                {techs.map((t) => {
-                  return (
-                    <span
-                      key={t.name}
-                      className="inline-block hover:-translate-y-[2px] duration-300 transition ease-in-out border border-neutral-600 text-md bg-neutral-800 rounded-sm p-2 text-center text-white mr-2 mb-1"
+
+                {/* Tech Stack List */}
+                <div className="flex flex-wrap gap-3 mt-auto">
+                  {techs.map((t, i) => (
+                    <a
+                      key={t.name || i}
+                      href={t.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/icon relative p-2 bg-neutral-800 border border-neutral-700 rounded-lg hover:bg-neutral-700 hover:border-purple-500/50 hover:text-white text-gray-400 transition-all duration-300 flex items-center justify-center w-10 h-10"
+                      title={t.name} // Tooltip bawaan browser
                     >
-                      <a href={t.link} target="_blank">
-                        {t.icon}
-                      </a>
-                    </span>
-                  );
-                })}
+                      {t.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

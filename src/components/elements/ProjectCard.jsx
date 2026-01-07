@@ -1,111 +1,151 @@
 import { Fragment, useState } from "react";
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, X, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
   const [showModal, setShowModal] = useState(false);
 
   const CardContent = () => (
-    <>
-      {/* Gambar */}
-      <div className="h-48 overflow-hidden">
+    <div className="flex h-full w-full">
+      {/* --- Bagian KIRI: Gambar --- */}
+      <div className="w-1/3 min-w-[120px] sm:min-w-[160px] relative overflow-hidden border-r border-neutral-700/50">
         <img
           src={img || "./assets/image/img_not_found.png"}
           alt={title}
-          className="object-cover w-full h-full transition-transform duration-500 bg-white"
+          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 bg-neutral-800"
         />
+        {/* Overlay Icon saat Hover */}
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-xs transition-opacity duration-300 flex items-center justify-center">
+          {link ? (
+            <ExternalLink className="text-white drop-shadow-md" size={20} />
+          ) : (
+            <Eye className="text-white drop-shadow-md" size={20} />
+          )}
+        </div>
       </div>
 
-      {/* Konten */}
-      <div className="p-5">
-        <h2 className="text-xl font-bold text-white flex items-center justify-between">
-          {title}
-          {link && <ExternalLink size={18} className="text-blue-400" />}
-        </h2>
-        {desc && (
-          <p className="text-gray-300 text-sm mt-2 leading-relaxed">{desc}</p>
-        )}
-        {tech && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {tech.map((t, idx) => (
-              <span
-                key={idx}
-                className="text-xs bg-neutral-700 text-gray-200 px-2 py-1 rounded-md"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
+      {/* --- Bagian KANAN: Konten --- */}
+      <div className="w-2/3 p-4 flex flex-col justify-between">
+        <div>
+          <h2 className="text-lg font-bold text-gray-100 leading-tight transition-colors line-clamp-1 mb-2">
+            {title}
+          </h2>
+
+          {desc && (
+            <p className="text-gray-400 text-xs leading-relaxed line-clamp-2 mb-3">
+              {desc}
+            </p>
+          )}
+        </div>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-1.5 mt-auto">
+          {tech &&
+            tech.slice(0, 3).map(
+              (
+                t,
+                idx // Max 3 item biar rapi di layout horizontal
+              ) => (
+                <span
+                  key={idx}
+                  className="text-[10px] font-medium bg-neutral-800 border border-neutral-700 text-gray-300 px-2 py-0.5 rounded-full"
+                >
+                  {t}
+                </span>
+              )
+            )}
+          {tech && tech.length > 3 && (
+            <span className="text-[10px] text-gray-500 px-1 py-0.5">
+              +{tech.length - 3}
+            </span>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 
+  // Class dasar wrapper (Hapus flex-col, pastikan overflow hidden)
+  const cardBaseClass =
+    "group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 shadow-lg shadow-black/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
+  // const cardBaseClass =
+  //   "group relative bg-neutral-700/60 backdrop-blur-md border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
   return (
     <Fragment>
       {link ? (
-        // 🔹 Kalau punya link → klik buka di tab baru
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
+          className={cardBaseClass}
         >
           <CardContent />
         </a>
       ) : (
-        // 🔹 Kalau tidak punya link → klik buka modal
-        <div
-          onClick={() => setShowModal(true)}
-          className="group relative cursor-pointer bg-neutral-700/60 backdrop-blur border border-neutral-700 rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
-        >
+        <div onClick={() => setShowModal(true)} className={cardBaseClass}>
           <CardContent />
         </div>
       )}
 
-      {/* 🔹 Modal tampil kalau showModal true */}
+      {/* --- MODAL (Tidak Berubah) --- */}
       <AnimatePresence>
         {showModal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             onClick={() => setShowModal(false)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-800 border border-neutral-700 rounded-xl p-6 max-w-md w-11/12 relative"
-              onClick={(e) => e.stopPropagation()} // biar modal gak close pas klik isi
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="bg-neutral-800 border border-neutral-700/60 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute top-3 right-3 text-gray-400 hover:text-white"
-                onClick={() => setShowModal(false)}
-              >
-                <X size={20} />
-              </button>
-              <h2 className="text-xl font-bold text-white mb-3">{title}</h2>
-              {img && (
+              <div className="relative h-56">
                 <img
                   src={img}
                   alt={title}
-                  className="rounded-md mb-4 w-full object-cover"
+                  className="w-full h-full object-cover"
                 />
-              )}
-              <p className="text-gray-300 text-sm leading-relaxed">
-                {descModal || "No additional information available."}
-              </p>
-              <a
-                href={preview}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 text-sm leading-relaxed"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {preview ? "Click for preview" : "No preview available."}
-              </a>
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent"></div>
+                <button
+                  className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors backdrop-blur-sm"
+                  onClick={() => setShowModal(false)}
+                >
+                  <X size={18} />
+                </button>
+                <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg">
+                  {title}
+                </h2>
+              </div>
+              <div className="p-6 pt-4">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {tech &&
+                    tech.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                  {descModal || desc || "No additional information available."}
+                </p>
+                {preview && (
+                  <a
+                    href={preview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-blue-600/50 hover:bg-blue-500/50 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center sm:w-auto"
+                  >
+                    <ExternalLink size={16} /> Live Preview{" "}
+                  </a>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}

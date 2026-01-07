@@ -71,53 +71,30 @@ const Experiences = (props) => {
       <section
         id="experiences"
         ref={goto}
-        className="relative w-full py-24 px-4 overflow-hidden min-h-screen"
+        className="flex flex-col ml-5 sm:mx-10 justify-center py-20 -mb-15 sm:-mb-0"
       >
-        {/* --- Background Glow Effects (Konsisten dengan section lain) --- */}
-        <div className="absolute top-1/3 -left-30 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-1/3 -right-30 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <h1 className="text-white text-3xl sm:text-4xl font-[700] pr-5 text-center mt-10 mx-auto sm:pr-0">
+          EXPERIENCES
+        </h1>
+        <p className="w-11/12 sm:w-2/3 sm:pr-0 pr-5 mx-auto mt-4 text-center leading-relaxed text-gray-200 mb-10">
+          A summary of my journey and the{" "}
+          <span className="text-blue-400 font-semibold">experiences </span>
+          that have shaped my{" "}
+          <span className="text-purple-400 font-semibold">skills</span> and
+          passion in technology.
+        </p>
+        <div className="relative w-full max-w-5xl mx-auto">
+          {/* Vertical Line */}
+          <div className="absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 bg-gray-400/30 h-full w-[3px] rounded-full"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* --- Header Utama --- */}
-          <div className="text-center mb-20">
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
-              Professional{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Journey
-              </span>
-            </h1>
-            <p className="w-full sm:w-2/3 mx-auto text-gray-400 leading-relaxed text-sm sm:text-base">
-              A timeline of my career path, highlighting the
-              <span className="text-blue-400 font-semibold"> roles</span>,
-              <span className="text-purple-400 font-semibold">
-                {" "}
-                environments
-              </span>
-              , and
-              <span className="text-blue-400 font-semibold">
-                {" "}
-                milestones
-              </span>{" "}
-              that have shaped my expertise.
-            </p>
-          </div>
-
-          {/* --- Timeline Wrapper --- */}
-          <div className="relative w-full max-w-5xl mx-auto">
-            {/* Garis Vertikal (Timeline Line) dengan Gradient */}
-            <div className="absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent rounded-full z-0"></div>
-            {/* <div className="absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 bg-gray-400/30 h-full w-[3px] rounded-full"></div> */}
-
-            {/* List Experiences */}
-            <div className="flex flex-col gap-12 sm:gap-0 relative z-10">
-              {experiences.map((exp, i) => (
-                <ExperienceCard
-                  key={i}
-                  {...exp}
-                  side={i % 2 === 0 ? "left" : "right"}
-                />
-              ))}
-            </div>
+          <div className="flex flex-col space-y-10">
+            {experiences.map((exp, i) => (
+              <ExperienceCard
+                key={i}
+                {...exp}
+                side={i % 2 === 0 ? "left" : "right"}
+              />
+            ))}
           </div>
         </div>
       </section>

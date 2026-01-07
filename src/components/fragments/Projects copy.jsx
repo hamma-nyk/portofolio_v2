@@ -87,71 +87,50 @@ const Projects = ({ goto }) => {
       <section
         id="projects"
         ref={goto}
-        className="relative w-full py-24 px-4 overflow-hidden min-h-screen"
+        className="flex flex-col mx-auto justify-center py-20 px-5 -mb-10 sm:mb-0"
       >
-        {/* --- Background Glow Effects (Agar seragam dengan Contact) --- */}
-        <div className="absolute top-50 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-50 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        {/* --- Header Utama --- */}
+        <h1 className="text-white text-3xl sm:text-4xl font-bold text-center mt-10">
+          PROJECTS
+        </h1>
+        <p className="w-11/12 sm:w-2/3 sm:pr-0 pr-5 mx-auto mt-4 text-center leading-relaxed text-gray-200 mb-16">
+          A showcase of my{" "}
+          <span className="text-blue-400 font-semibold">projects</span> that
+          reflect my{" "}
+          <span className="text-purple-400 font-semibold">creativity</span>,{" "}
+          <span className="text-blue-400 font-semibold">problem-solving</span>{" "}
+          skills, and passion for building impactful digital solutions.
+        </p>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* --- Header Utama --- */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
-              Featured{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Projects
-              </span>
-            </h1>
-            <p className="w-full sm:w-2/3 mx-auto text-gray-400 leading-relaxed text-sm sm:text-base">
-              A showcase of my technical explorations, reflecting my passion for
-              <span className="text-blue-400 font-semibold">
-                {" "}
-                innovation
-              </span>{" "}
-              and
-              <span className="text-purple-400 font-semibold">
-                {" "}
-                problem-solving
-              </span>
-              .
-            </p>
+        {/* --- Bagian 1: Web App Projects --- */}
+        <div className="max-w-6xl mx-auto w-full mb-16">
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+              Web App Projects
+            </h2>
+            <div className="h-0.5 flex-grow bg-gray-700/50 rounded-full"></div>
           </div>
 
-          {/* --- Bagian 1: Web App Projects --- */}
-          <div className="w-full mb-20">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-blue-400 to-cyan-300"></span>
-                Web Apps
-              </h2>
-              {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-blue-500/30 to-transparent"></div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+            {webProjects.map((project, i) => (
+              <ProjectCard key={i} {...project} />
+            ))}
+          </div>
+        </div>
 
-            {/* Grid diset max 2 kolom untuk layout Horizontal Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {webProjects.map((project, i) => (
-                <ProjectCard key={i} {...project} />
-              ))}
-            </div>
+        {/* --- Bagian 2: Desktop App Projects --- */}
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
+              Desktop App Projects
+            </h2>
+            <div className="h-0.5 flex-grow bg-gray-700/50 rounded-full"></div>
           </div>
 
-          {/* --- Bagian 2: Desktop App Projects --- */}
-          <div className="w-full">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-400 to-pink-300"></span>
-                Desktop Apps
-              </h2>
-              {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-purple-500/30 to-transparent"></div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {desktopProjects.map((project, i) => (
-                <ProjectCard key={i} {...project} />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {desktopProjects.map((project, i) => (
+              <ProjectCard key={i} {...project} />
+            ))}
           </div>
         </div>
       </section>
