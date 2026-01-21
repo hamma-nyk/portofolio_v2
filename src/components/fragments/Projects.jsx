@@ -2,9 +2,35 @@ import { Fragment } from "react";
 import ProjectCard from "../elements/ProjectCard";
 
 const Projects = ({ goto }) => {
+  const infra = [
+    {
+      title: "Topology Design and Implementation of Network Infrastructure",
+      img: "./assets/image/networking.png",
+      desc: "PT Nusantara Building Industries",
+      tech: ["draw.io", "Mikrotik", "Ruijie", "Ubiquiti", "Fiber Optic"],
+    },
+    {
+      title: "Topology Design and Implementation of CCTV Infrastructure",
+      img: "./assets/image/ytdlp.png",
+      desc: "PT Nusantara Building Industries",
+      tech: ["draw.io", "HIKVISION"],
+    },
+    {
+      title: "TrueNAS and ESXi Infrastructure Management",
+      img: "./assets/image/truenas.png",
+      desc: "PT Nusantara Building Industries",
+      tech: ["TrueNAS", "ESXi", "Linux"],
+    },
+    {
+      title: "Network and VM Monitoring Dashboard",
+      img: "./assets/image/dashboard.png",
+      desc: "PT Nusantara Building Industries",
+      tech: ["SocketIO", "NodeJS", "SSH"],
+    },
+  ];
   const webProjects = [
     {
-      title: "my-ytdlp",
+      title: "Youtube Downloader",
       img: "./assets/image/ytdlp.png",
       desc: "YtDlp Web UI using ReactJS",
       link: "https://my-ytdlp.vercel.app/",
@@ -48,6 +74,13 @@ const Projects = ({ goto }) => {
   ];
 
   const desktopProjects = [
+    {
+      title: "Nanostation AP Restart Scheduler",
+      img: "./assets/image/aprestart.png",
+      desc: "Shcedule Nanostation AP restart.",
+      descModal: "This tools is for local use. Contact me if you want a demo.",
+      tech: ["Python", "Paramiko"],
+    },
     {
       title: "MDB Access to SQL Server",
       img: "./assets/image/mdbconvert.png",
@@ -118,6 +151,24 @@ const Projects = ({ goto }) => {
           </div>
 
           {/* --- Bagian 1: Web App Projects --- */}
+          <div className="w-full mb-20">
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-white to-blue-300"></span>
+                Network & IT Insfrastuctur
+              </h2>
+              {/* Garis Divider dengan Gradient Fade */}
+              <div className="h-[1px] flex-grow bg-gradient-to-r from-blue-500/30 to-transparent"></div>
+            </div>
+
+            {/* Grid diset max 2 kolom untuk layout Horizontal Card */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {infra.map((inf, i) => (
+                <ProjectCard key={i} {...inf} />
+              ))}
+            </div>
+          </div>
+
           <div className="w-full mb-20">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
