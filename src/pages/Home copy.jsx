@@ -78,7 +78,7 @@ const Home = () => {
       />
       <div
         ref={HomeSection}
-        className="flex mx-auto w-full h-full bg-neutral-800 flex-col dark:text-white "
+        className="flex mx-auto w-full h-full bg-neutral-900 flex-col dark:text-white "
       >
         {/* 🔹 NAVBAR */}
         <section
@@ -86,7 +86,7 @@ const Home = () => {
           className={`flex sticky top-0 w-full justify-center z-50 ${
             isScroll
               ? "shadow-lg transition-all bg-neutral-900/90 duration-300 ease-in-out backdrop-blur-md border-b border-neutral-700/50"
-              : "bg-neutral-800 transition-all duration-300 ease-in-out border-b border-neutral-700/0"
+              : "bg-neutral-900 transition-all duration-300 ease-in-out border-b border-neutral-700/0"
           }`}
         >
           <div className="flex w-4/5 sm:w-2/3 h-20 items-center justify-between font-[500]">

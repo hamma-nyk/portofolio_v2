@@ -12,6 +12,8 @@ import Message from "@/components/fragments/Message";
 import { motion, AnimatePresence } from "framer-motion";
 import { Particles } from "@/components/ui/shadcn-io/particles";
 import { House, User, Briefcase, FolderKanban, Mail } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChatBot from "@/components/elements/ChatBot";
 const Home = () => {
   const [isScroll, setIsScroll] = useState(false);
   const HomeSection = useRef(null);
@@ -24,6 +26,40 @@ const Home = () => {
   const [index, setIndex] = useState(0);
   const [maxWidth, setMaxWidth] = useState(0);
   const measureRef = useRef(null);
+  // 1. Tambahkan State untuk menyimpan section mana yang sedang aktif
+  const [activeNav, setActiveNav] = useState("home");
+
+  // 2. Gunakan useEffect untuk mendeteksi posisi scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      // Offset 200px agar active-nya pindah sedikit sebelum section benar-benar sampai atas
+      const scrollPosition = window.scrollY + 300;
+
+      // Daftar section dan ID-nya
+      const sections = [
+        { id: "home", ref: HomeSection },
+        { id: "about", ref: AboutSection },
+        { id: "experiences", ref: ExperiencesSection },
+        { id: "projects", ref: ProjectsSection },
+        { id: "message", ref: MessageSection },
+      ];
+
+      // Loop untuk cek posisi
+      sections.forEach((section) => {
+        if (
+          section.ref.current &&
+          section.ref.current.offsetTop <= scrollPosition &&
+          section.ref.current.offsetTop + section.ref.current.offsetHeight >
+            scrollPosition
+        ) {
+          setActiveNav(section.id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // 🔹 Hitung ulang width saat index berubah / resize layar
   useEffect(() => {
@@ -90,59 +126,107 @@ const Home = () => {
           }`}
         >
           <div className="flex w-4/5 sm:w-2/3 h-20 items-center justify-between font-[500]">
-            <div className="hidden sm:flex">
-              <ButtonNav
-                onClick={() => JumpToSection(HomeSection)}
-                text="Home"
-              />
-              <ButtonNav
-                onClick={() => JumpToSection(AboutSection)}
-                text="About"
-              />
-              <ButtonNav
-                onClick={() => JumpToSection(ExperiencesSection)}
-                text="Experiences"
-              />
-              <ButtonNav
-                onClick={() => JumpToSection(ProjectsSection)}
-                text="Projects"
-              />
-              <ButtonNav
-                onClick={() => JumpToSection(MessageSection)}
-                text="Contact"
-              />
+            <div className="hidden sm:flex items-center gap-2">
+              {[
+                { id: "home", section: HomeSection, text: "Home" },
+                { id: "about", section: AboutSection, text: "About" },
+                {
+                  id: "experiences",
+                  section: ExperiencesSection,
+                  text: "Experiences",
+                },
+                { id: "projects", section: ProjectsSection, text: "Projects" },
+                { id: "message", section: MessageSection, text: "Contact" },
+              ].map((item, index) => (
+                <ButtonNav
+                  key={index}
+                  text={item.text}
+                  isActive={activeNav === item.id} // 👈 Logika Active State
+                  onClick={() => {
+                    JumpToSection(item.section);
+                    setActiveNav(item.id); // Set active saat diklik
+                  }}
+                />
+              ))}
             </div>
-            <div className="flex sm:hidden justify-between w-full text-gray-200">
-              <button
-                onClick={() => JumpToSection(HomeSection)}
-                className={`p-3 rounded-full transition-all cursor-pointer`}
-              >
-                <House className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => JumpToSection(AboutSection)}
-                className={`p-3 rounded-full transition-all cursor-pointer`}
-              >
-                <User className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => JumpToSection(ExperiencesSection)}
-                className={`p-3 rounded-full transition-all cursor-pointer`}
-              >
-                <Briefcase className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => JumpToSection(ProjectsSection)}
-                className={`p-3 rounded-full transition-all cursor-pointer`}
-              >
-                <FolderKanban className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => JumpToSection(MessageSection)}
-                className={`p-3 rounded-full transition-all cursor-pointer`}
-              >
-                <Mail className="w-6 h-6" />
-              </button>
+            <div className="flex sm:hidden justify-evenly w-full items-center px-1">
+              {[
+                {
+                  id: "home",
+                  icon: House,
+                  section: HomeSection,
+                  label: "Home",
+                },
+                {
+                  id: "about",
+                  icon: User,
+                  section: AboutSection,
+                  label: "About",
+                },
+                {
+                  id: "experiences",
+                  icon: Briefcase,
+                  section: ExperiencesSection,
+                  label: "Exp",
+                },
+                {
+                  id: "projects",
+                  icon: FolderKanban,
+                  section: ProjectsSection,
+                  label: "Projects",
+                },
+                {
+                  id: "message",
+                  icon: Mail,
+                  section: MessageSection,
+                  label: "Contact",
+                },
+              ].map((item, index) => {
+                // Cek apakah tombol ini sedang aktif
+                const isActive = activeNav === item.id;
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      JumpToSection(item.section);
+                      setActiveNav(item.id); // Set active langsung saat diklik biar responsif
+                    }}
+                    aria-label={item.label}
+                    className={`group relative p-3 rounded-2xl transition-all duration-300 focus:outline-none ${
+                      isActive ? "bg-white/10" : "hover:bg-white/5"
+                    }`}
+                  >
+                    {/* 🔹 Background Glow (Muncul jika Active ATAU Hover) */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20 transition-opacity duration-300 pointer-events-none ${
+                        isActive
+                          ? "opacity-100"
+                          : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    ></div>
+
+                    {/* 🔹 Icon Styling */}
+                    <item.icon
+                      className={`relative z-10 w-6 h-6 transition-colors duration-300 drop-shadow-sm ${
+                        isActive
+                          ? "text-blue-300"
+                          : "text-gray-400 group-hover:text-blue-300"
+                      }`}
+                      strokeWidth={isActive ? 2 : 2} // Icon lebih tebal jika aktif
+                    />
+
+                    {/* 🔹 Active Indicator (Titik di bawah icon) */}
+                    {/*<span
+                      className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-400 transition-all duration-300 ${
+                        isActive
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-0 group-hover:opacity-50"
+                      }`}
+                    ></span>*/}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -192,7 +276,7 @@ const Home = () => {
             </h1>
 
             <CodeTemplate />
-            <div className="flex gap-3 sm:gap-4 pt-10 text-sm px-5">
+            {/*<div className="flex gap-3 sm:gap-4 pt-10 text-sm px-5">
               <ButtonHome
                 link="#"
                 icon={faDownload}
@@ -211,6 +295,54 @@ const Home = () => {
                 text="Linkedin"
                 additionalClass={"ml-2 sm:ml-0"}
               />
+            </div>*/}
+            {/* 3. UNIFIED BUTTONS (Satu Tema) */}
+            <div className="flex flex-wrap gap-2 sm:gap-4 pl-2 sm:pl-5">
+              {[
+                {
+                  text: "Download CV",
+                  icon: faDownload,
+                  link: "#",
+                  primary: true,
+                }, // Primary flag jika ingin sedikit beda
+                {
+                  text: "Github",
+                  icon: faGithub,
+                  link: "https://github.com/hamma-nyk",
+                },
+                {
+                  text: "Linkedin",
+                  icon: faLinkedin,
+                  link: "https://linkedin.com/in/myikos",
+                },
+              ].map((btn, idx) => (
+                <a
+                  key={idx}
+                  href={btn.link}
+                  target={btn.link === "#" ? "_self" : "_blank"}
+                  rel="noopener noreferrer"
+                  // HAPUS: hover:border-transparent
+                  // TAMBAH: hover:border-purple-500/50 (Langsung ganti warna border parent saat hover)
+                  className="w-10 sm:w-auto mt-6 text-sm group relative px-3 sm:px-5 py-3 rounded-xl bg-neutral-800/80 backdrop-blur-sm border border-neutral-700/50 text-gray-300 font-medium transition-all duration-300 hover:text-white hover:-translate-y-1 overflow-hidden hover:border-purple-500/50"
+                >
+                  {/* Gradient Hover Background Effect (Tetap simpan ini untuk efek glowing dalam) */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* HAPUS DIV BORDER GLOW EFFECT YANG LAMA */}
+                  {/* Karena border color sudah dihandle oleh parent <a> di atas */}
+
+                  {/* Button Content */}
+                  <div className="relative flex items-center gap-3 z-10">
+                    <FontAwesomeIcon
+                      icon={btn.icon}
+                      className={`transition-transform duration-300 group-hover:scale-105 ${
+                        btn.primary ? "text-blue-400" : ""
+                      }`}
+                    />
+                    <span className="hidden sm:inline">{btn.text}</span>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </section>
@@ -219,6 +351,7 @@ const Home = () => {
         <Experiences goto={ExperiencesSection} />
         <Projects goto={ProjectsSection} />
         <Message goto={MessageSection} />
+        <ChatBot />
       </div>
     </Fragment>
   );

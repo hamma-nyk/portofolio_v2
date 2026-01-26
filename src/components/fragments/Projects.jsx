@@ -7,6 +7,10 @@ const Projects = ({ goto }) => {
       title: "Topology Design and Implementation of Network Infrastructure",
       img: "./assets/image/networking.png",
       desc: "PT Nusantara Building Industries",
+      descModal: `- Design network topology
+        - Fiber Optic installation
+        - Network infrastructure management & installation`,
+
       tech: ["draw.io", "Mikrotik", "Ruijie", "Ubiquiti", "Fiber Optic"],
     },
     {
@@ -19,6 +23,9 @@ const Projects = ({ goto }) => {
       title: "TrueNAS and ESXi Infrastructure Management",
       img: "./assets/image/truenas.png",
       desc: "PT Nusantara Building Industries",
+      descModal: `- TrueNAS & ESXi installation
+        - User storage pool & group management
+        - VM & Server management`,
       tech: ["TrueNAS", "ESXi", "Linux"],
     },
     {
@@ -29,6 +36,13 @@ const Projects = ({ goto }) => {
     },
   ];
   const webProjects = [
+    {
+      title: "English Word Suggestion",
+      img: "./assets/image/lletter.png",
+      desc: "English word suggestion app using ReactJS",
+      link: "https://lletter.vercel.app/",
+      tech: ["ReactJS", "TailwindCSS"],
+    },
     {
       title: "Youtube Downloader",
       img: "./assets/image/ytdlp.png",
@@ -154,11 +168,11 @@ const Projects = ({ goto }) => {
           <div className="w-full mb-20">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-white to-blue-300"></span>
+                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-white to-blue-300"></span> */}
                 Network & IT Insfrastuctur
               </h2>
               {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-blue-500/30 to-transparent"></div>
+              <div className="h-[1px] flex-grow bg-gradient-to-r from-purple-500/30 to-transparent"></div>
             </div>
 
             {/* Grid diset max 2 kolom untuk layout Horizontal Card */}
@@ -172,7 +186,7 @@ const Projects = ({ goto }) => {
           <div className="w-full mb-20">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-blue-400 to-cyan-300"></span>
+                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-blue-400 to-cyan-300"></span> */}
                 Web Apps
               </h2>
               {/* Garis Divider dengan Gradient Fade */}
@@ -191,7 +205,7 @@ const Projects = ({ goto }) => {
           <div className="w-full">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-400 to-pink-300"></span>
+                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-400 to-pink-300"></span> */}
                 Desktop Apps
               </h2>
               {/* Garis Divider dengan Gradient Fade */}

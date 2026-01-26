@@ -44,7 +44,7 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
             tech.slice(0, 3).map(
               (
                 t,
-                idx // Max 3 item biar rapi di layout horizontal
+                idx, // Max 3 item biar rapi di layout horizontal
               ) => (
                 <span
                   key={idx}
@@ -52,7 +52,7 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
                 >
                   {t}
                 </span>
-              )
+              ),
             )}
           {tech && tech.length > 3 && (
             <span className="text-[10px] text-gray-500 px-1 py-0.5">
@@ -116,7 +116,7 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
                 >
                   <X size={18} />
                 </button>
-                <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg">
+                <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg pr-3">
                   {title}
                 </h2>
               </div>
@@ -132,7 +132,7 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
                       </span>
                     ))}
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                <p className="text-gray-300 text-sm leading-relaxed mb-6 whitespace-pre-line">
                   {descModal || desc || "No additional information available."}
                 </p>
                 {preview && (

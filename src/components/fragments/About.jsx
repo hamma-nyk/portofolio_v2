@@ -61,8 +61,8 @@ const About = (props) => {
         className="relative w-full py-24 px-4 overflow-hidden min-h-screen flex flex-col justify-center"
       >
         {/* --- Background Glow Effects --- */}
-        <div className="absolute top-30 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-30 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute bottom-35 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-35 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           {/* --- Header Utama --- */}
@@ -125,11 +125,17 @@ const About = (props) => {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-blue-600/20 hover:text-blue-400 border border-neutral-700 hover:border-blue-500/50 rounded-lg text-sm text-gray-300 transition-all duration-300"
+                      className="flex items-center gap-2 px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-gray-300 transition-all duration-300 
+  
+  group-hover:bg-blue-500/10 group-hover:border-blue-500/30 group-hover:text-gray-100
+  
+  hover:!bg-blue-600/20 hover:!border-blue-500/80 hover:!text-blue-400"
                     >
-                      {/* Opsional: Jika Anda pakai FontAwesome untuk circle question, bisa masukkan di sini */}
                       <span>{item.name}</span>
-                      <ExternalLink size={12} className="opacity-50" />
+                      <ExternalLink
+                        size={12}
+                        className="opacity-50 group-hover:opacity-100 transition-opacity"
+                      />
                     </a>
                   ))}
                 </div>
@@ -164,8 +170,12 @@ const About = (props) => {
                       href={t.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/icon relative p-2 bg-neutral-800 border border-neutral-700 rounded-lg hover:bg-neutral-700 hover:border-purple-500/50 hover:text-white text-gray-400 transition-all duration-300 flex items-center justify-center w-10 h-10"
-                      title={t.name} // Tooltip bawaan browser
+                      className="relative p-2 bg-neutral-800 border border-neutral-700 rounded-lg text-gray-400 transition-all duration-300 flex items-center justify-center w-10 h-10
+  
+  group-hover:bg-purple-500/10 group-hover:border-purple-500/30 group-hover:text-purple-300
+  
+  hover:!bg-purple-600/20 hover:!border-purple-500 hover:!text-white hover:scale-110"
+                      title={t.name}
                     >
                       {t.icon}
                     </a>
