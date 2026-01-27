@@ -124,7 +124,7 @@ const ChatBot = () => {
             {/* Messages Area */}
             <div
               ref={scrollRef}
-              className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-neutral-700 scrollbar-track-transparent"
+              className="flex-1 overflow-y-auto p-4 space-y-4"
             >
               {messages.map((msg, idx) => (
                 <div
