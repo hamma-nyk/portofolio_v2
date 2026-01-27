@@ -158,9 +158,10 @@ const About = (props) => {
                 </div>
 
                 <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                  I build simple and functional web applications using modern
-                  technologies. I focus on creating clean, efficient, and
-                  user-friendly systems that facilitate team productivity.
+                  I build simple and functional web and dekstop applications
+                  using modern technologies. I focus on creating clean,
+                  efficient, and user-friendly systems that facilitate team
+                  productivity.
                 </p>
 
                 {/* Tech Stack List */}

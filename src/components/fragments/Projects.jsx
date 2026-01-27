@@ -124,7 +124,7 @@ const Projects = ({ goto }) => {
     },
     {
       title: "Topology Design and Implementation of CCTV Infrastructure",
-      img: "./assets/image/ytdlp.png",
+      img: "./assets/image/cctv.png",
       desc: "PT Nusantara Building Industries",
       tech: ["draw.io", "HIKVISION"],
     },
@@ -292,7 +292,7 @@ const Projects = ({ goto }) => {
           <ProjectSlider
             title="Desktop Apps"
             projects={desktopProjects}
-            gradientColor="purple"
+            gradientColor="pink"
           />
         </div>
       </section>

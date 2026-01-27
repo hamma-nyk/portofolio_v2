@@ -163,7 +163,7 @@ const Message = ({ goto }) => {
                         name="name"
                         placeholder="Your Name"
                         required
-                        className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
+                        className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
                       />
                     </div>
 
@@ -177,7 +177,7 @@ const Message = ({ goto }) => {
                         name="email"
                         placeholder="Your Email Address"
                         required
-                        className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
+                        className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all"
                       />
                     </div>
 
@@ -191,7 +191,7 @@ const Message = ({ goto }) => {
                         placeholder="What's on your mind?"
                         required
                         rows="5"
-                        className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all resize-none"
+                        className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 outline-none transition-all resize-none"
                       ></textarea>
                     </div>
 
@@ -204,7 +204,7 @@ const Message = ({ goto }) => {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="mt-2 w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="mt-2 w-full text-sm bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {sending ? (
                         <span className="animate-pulse">Sending...</span>
@@ -233,7 +233,7 @@ const Message = ({ goto }) => {
                           name="name"
                           placeholder="Your Name"
                           required
-                          className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
+                          className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
                         />
                       </div>
                       <div className="relative group">
@@ -246,7 +246,7 @@ const Message = ({ goto }) => {
                           name="euname"
                           placeholder="Username / Email"
                           required
-                          className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
+                          className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
                         />
                       </div>
                     </div>
@@ -260,7 +260,7 @@ const Message = ({ goto }) => {
                         type="text"
                         name="subject"
                         placeholder="Subject (Optional)"
-                        className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
+                        className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all"
                       />
                     </div>
 
@@ -274,14 +274,14 @@ const Message = ({ goto }) => {
                         placeholder="Write your telegram message..."
                         required
                         rows="5"
-                        className="w-full bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all resize-none"
+                        className="w-full text-sm bg-neutral-900/50 border border-neutral-700 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 outline-none transition-all resize-none"
                       ></textarea>
                     </div>
 
                     <button
                       type="submit"
                       disabled={sending}
-                      className="mt-2 w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-500/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="text-sm mt-2 w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-500/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {sending ? (
                         <span className="animate-pulse">Sending...</span>

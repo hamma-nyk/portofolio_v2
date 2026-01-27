@@ -112,10 +112,7 @@ const Home = () => {
         color="#ffffff"
         size={0.8}
       />
-      <div
-        ref={HomeSection}
-        className="flex mx-auto w-full h-full bg-neutral-900 flex-col dark:text-white "
-      >
+      <div className="flex mx-auto w-full h-full bg-neutral-900 flex-col dark:text-white ">
         {/* 🔹 NAVBAR */}
         <section
           id="navbar"
@@ -234,7 +231,8 @@ const Home = () => {
         {/* 🔹 HOME SECTION */}
         <section
           id="home"
-          className="flex flex-col mx-auto justify-center -mt-10"
+          ref={HomeSection}
+          className="flex flex-col mx-auto justify-center"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
             <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">
