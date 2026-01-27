@@ -19,7 +19,7 @@ const Message = ({ goto }) => {
         "service_8t8tz35",
         "template_t4grhe3",
         e.target,
-        "mLA7c5q0L6d7eOUP_"
+        "mLA7c5q0L6d7eOUP_",
       )
       .then(
         () => {
@@ -30,7 +30,7 @@ const Message = ({ goto }) => {
         (error) => {
           alert("Failed to send message: " + error.text);
           setSending(false);
-        }
+        },
       );
   };
 
@@ -137,7 +137,8 @@ const Message = ({ goto }) => {
           <div className="w-full flex justify-center px-4">
             <div className="w-full max-w-lg transition-all duration-500">
               <div
-                className={`relative bg-neutral-800/50 backdrop-blur-md border rounded-3xl p-8 shadow-lg transition-all duration-500 ${
+                // className={`relative bg-neutral-800/50 backdrop-blur-md border rounded-3xl p-8 shadow-lg transition-all duration-500 ${
+                className={`relative bg-neutral-800/50 border rounded-3xl p-8 shadow-lg transition-all duration-500 ${
                   activeTab === "email"
                     ? // ? "border-blue-500/20 shadow-blue-500/5"
                       // : "border-purple-500/20 shadow-purple-500/5"

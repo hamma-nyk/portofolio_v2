@@ -106,9 +106,9 @@ const Home = () => {
     <Fragment>
       <Particles
         className="absolute inset-0 fixed z-0 pointer-events-none"
-        quantity={60}
-        ease={60}
-        staticity={100}
+        quantity={50}
+        ease={50}
+        staticity={20}
         color="#ffffff"
         size={0.8}
       />

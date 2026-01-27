@@ -86,7 +86,8 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="mb-4 w-[350px] sm:w-[380px] h-[500px] max-h-[80vh] bg-neutral-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            className="mb-4 w-[350px] sm:w-[380px] h-[500px] max-h-[80vh] bg-neutral-900/90 border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            // className="mb-4 w-[350px] sm:w-[380px] h-[500px] max-h-[80vh] bg-neutral-900/90 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="p-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-white/10 flex justify-between items-center">
@@ -204,7 +205,7 @@ const ChatBot = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-purple-500/30 text-white overflow-hidden"
+        className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-neutral-900 text-white overflow-hidden"
       >
         <div className="absolute inset-0 bg-white/20 group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
         {isOpen ? <X size={28} /> : <MessageCircle size={28} />}

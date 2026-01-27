@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { ExternalLink, X, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { createPortal } from "react-dom";
 const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -66,9 +66,10 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
 
   // Class dasar wrapper (Hapus flex-col, pastikan overflow hidden)
   const cardBaseClass =
-    "group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 shadow-lg shadow-black/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
+    "group relative bg-neutral-800/50 border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 shadow-lg shadow-black/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
   // const cardBaseClass =
-  //   "group relative bg-neutral-700/60 backdrop-blur-md border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
+  // "group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 rounded-xl overflow-hidden hover:border-neutral-600 shadow-lg shadow-black/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-32 sm:h-40 w-full";
+
   return (
     <Fragment>
       {link ? (
@@ -87,69 +88,74 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
       )}
 
       {/* --- MODAL (Tidak Berubah) --- */}
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
-            onClick={() => setShowModal(false)}
-          >
+      {createPortal(
+        <AnimatePresence>
+          {showModal && (
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-neutral-800 border border-neutral-700/60 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-100 p-4"
+              onClick={() => setShowModal(false)}
             >
-              <div className="relative h-56">
-                <img
-                  src={img}
-                  alt={title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent"></div>
-                <button
-                  className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors backdrop-blur-sm"
-                  onClick={() => setShowModal(false)}
-                >
-                  <X size={18} />
-                </button>
-                <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg pr-3">
-                  {title}
-                </h2>
-              </div>
-              <div className="p-6 pt-4">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {tech &&
-                    tech.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 whitespace-pre-line">
-                  {descModal || desc || "No additional information available."}
-                </p>
-                {preview && (
-                  <a
-                    href={preview}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-blue-600/50 hover:bg-blue-500/50 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center sm:w-auto"
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                className="bg-neutral-800 border border-neutral-700/60 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative h-56">
+                  <img
+                    src={img}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent"></div>
+                  <button
+                    className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors backdrop-blur-sm"
+                    onClick={() => setShowModal(false)}
                   >
-                    <ExternalLink size={16} /> Live Preview{" "}
-                  </a>
-                )}
-              </div>
+                    <X size={18} />
+                  </button>
+                  <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg pr-3">
+                    {title}
+                  </h2>
+                </div>
+                <div className="p-6 pt-4">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {tech &&
+                      tech.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6 whitespace-pre-line">
+                    {descModal ||
+                      desc ||
+                      "No additional information available."}
+                  </p>
+                  {preview && (
+                    <a
+                      href={preview}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-blue-600/50 hover:bg-blue-500/50 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors w-full justify-center sm:w-auto"
+                    >
+                      <ExternalLink size={16} /> Live Preview{" "}
+                    </a>
+                  )}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body, // Target render portal
+      )}
     </Fragment>
   );
 };

@@ -12,6 +12,13 @@ const ProjectSlider = ({ title, projects, gradientColor }) => {
 
   const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
   const hasMultiplePages = totalPages > 1;
+  const gradientMap = {
+    purple: "from-purple-500/30",
+    blue: "from-blue-500/30",
+    pink: "from-pink-500/30",
+    cyan: "from-cyan-500/30",
+  };
+  const activeGradient = gradientMap[gradientColor] || "from-purple-500/30";
 
   // Logika Pagination
   const handleNext = () => {
@@ -55,7 +62,7 @@ const ProjectSlider = ({ title, projects, gradientColor }) => {
             {title}
           </h2>
           <div
-            className={`h-[1px] flex-grow bg-gradient-to-r from-${gradientColor}-500/30 to-transparent`}
+            className={`h-[1px] flex-grow bg-gradient-to-r ${activeGradient} to-transparent`}
           ></div>
         </div>
 
