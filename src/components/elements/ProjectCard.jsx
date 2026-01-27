@@ -15,7 +15,9 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 bg-neutral-800"
         />
         {/* Overlay Icon saat Hover */}
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-xs transition-opacity duration-300 flex items-center justify-center">
+        {/* <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 group-hover:backdrop-blur-xs transition-opacity duration-300 flex items-center justify-center"> */}
+
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           {link ? (
             <ExternalLink className="text-white drop-shadow-md" size={20} />
           ) : (
@@ -95,7 +97,9 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-100 p-4"
+              transition={{ duration: 0.2 }}
+              // className="fixed inset-0 bg-black/90 backdrop-blur-xs transform-gpu flex items-center justify-center z-[9999] p-4"
+              className="fixed inset-0 bg-black/90 transform-gpu flex items-center justify-center z-[9999] p-4"
               onClick={() => setShowModal(false)}
             >
               <motion.div
@@ -113,7 +117,8 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent"></div>
                   <button
-                    className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors backdrop-blur-sm"
+                    // className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors backdrop-blur-sm"
+                    className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 p-1.5 rounded-full text-white transition-colors"
                     onClick={() => setShowModal(false)}
                   >
                     <X size={18} />

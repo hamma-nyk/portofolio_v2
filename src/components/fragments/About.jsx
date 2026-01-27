@@ -92,7 +92,8 @@ const About = (props) => {
           {/* --- Cards Container --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* === CARD 1: IT SUPPORT === */}
-            <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
+            {/* <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20"> */}
+            <div className="group relative bg-neutral-800/50 border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
               <div className="relative z-10 flex flex-col h-full">
