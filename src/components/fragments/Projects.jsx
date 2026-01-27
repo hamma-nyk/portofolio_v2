@@ -242,7 +242,7 @@ const Projects = ({ goto }) => {
       <section
         id="projects"
         ref={goto}
-        className="relative w-full py-24 px-4 overflow-hidden min-h-screen"
+        className="relative w-full pt-24 px-4 overflow-hidden min-h-screen"
       >
         {/* --- Background Glow Effects --- */}
         <div className="absolute top-50 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
