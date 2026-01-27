@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import ReactMarkdown from "react-markdown";
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -17,9 +17,9 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       role: "system",
-      content: `Halo! 👋 Saya Iko. Tanya apa saja soal skill, pengalaman, atau proyek saya!
+      content: `Halo! 👋 Saya **Asia**, asisten pribadi Iko. Tanya apa saja tentang portofolio, skill, atau proyek Iko.
 .............
-Hey! 👋 I’m Iko. Feel free to ask about my skills, work experience, or projects.`,
+Hi! 👋 I’m **Asia**, Iko’s personal assistant. Ask me anything about Iko’s portfolio, skills, or projects.`,
     },
   ]);
 
@@ -96,15 +96,20 @@ Hey! 👋 I’m Iko. Feel free to ask about my skills, work experience, or proje
                 {/* Avatar Iko (Bisa ganti <img> foto asli Anda jika ada) */}
                 <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center border border-white/20">
                   <User size={20} className="text-white" />
+                  <img
+                    className="absolute w-full h-full object-cover rounded-full"
+                    src="./assets/image/asia.png"
+                    alt=""
+                  />
                   {/* Status Dot */}
-                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-neutral-900 rounded-full"></span>
+                  <span className="absolute -bottom-0 -right-1 w-3 h-3 bg-green-500 border-2 border-neutral-900 rounded-full"></span>
                 </div>
 
                 <div>
                   <h3 className="text-white font-bold text-sm flex items-center gap-1">
-                    Iko{" "}
+                    Asia Assistant{" "}
                     <span className="px-1.5 py-0.5 rounded text-[8px] bg-blue-500/20 text-blue-300 font-medium border border-blue-500/30">
-                      Virtual
+                      AI
                     </span>
                     <span className="px-1.5 py-0.5 rounded text-[8px] bg-neutral-500/20 text-neutral-300 font-medium border border-neutral-500/30">
                       Beta 1.0
@@ -144,19 +149,29 @@ Hey! 👋 I’m Iko. Feel free to ask about my skills, work experience, or proje
                     {msg.role === "user" ? (
                       <User size={14} className="text-purple-400" />
                     ) : (
-                      <Sparkles size={14} className="text-blue-400" />
+                      <Bot size={14} className="text-blue-400" />
                     )}
                   </div>
 
                   {/* Bubble */}
                   <div
-                    className={`p-3 rounded-2xl text-sm leading-relaxed whitespace-pre-line max-w-[80%] ${
+                    className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] whitespace-pre-line ${
                       msg.role === "user"
                         ? "bg-purple-500/20 text-purple-100 rounded-tr-none border border-purple-500/20"
                         : "bg-blue-600/20 text-blue-50 rounded-tl-none border border-blue-500/20"
                     }`}
                   >
-                    {msg.content}
+                    <ReactMarkdown
+                      components={{
+                        strong: ({ children }) => (
+                          <strong className="font-semibold text-white">
+                            {children}
+                          </strong>
+                        ),
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))}
@@ -165,7 +180,7 @@ Hey! 👋 I’m Iko. Feel free to ask about my skills, work experience, or proje
               {isLoading && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
-                    <Sparkles size={14} className="text-blue-400" />
+                    <Bot size={14} className="text-blue-400" />
                   </div>
                   <div className="p-3 rounded-2xl rounded-tl-none bg-neutral-800 border border-neutral-700 flex items-center gap-2">
                     <Loader2 size={16} className="text-blue-400 animate-spin" />
