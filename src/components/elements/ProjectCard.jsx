@@ -99,7 +99,8 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               // className="fixed inset-0 bg-black/90 backdrop-blur-xs transform-gpu flex items-center justify-center z-[9999] p-4"
-              className="fixed inset-0 bg-black/90 transform-gpu flex items-center justify-center z-[9999] p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 transform-gpu will-change-[opacity]"
+              // className="fixed inset-0 bg-black/90 transform-gpu flex items-center justify-center z-[9999] p-4"
               onClick={() => setShowModal(false)}
             >
               <motion.div
