@@ -106,9 +106,9 @@ const Home = () => {
     <Fragment>
       <Particles
         className="absolute inset-0 fixed z-0 pointer-events-none"
-        quantity={100}
-        ease={80}
-        staticity={50}
+        quantity={60}
+        ease={60}
+        staticity={100}
         color="#ffffff"
         size={0.8}
       />
@@ -119,7 +119,7 @@ const Home = () => {
         {/* 🔹 NAVBAR */}
         <section
           id="navbar"
-          className={`flex sticky top-0 w-full justify-center z-50 ${
+          className={`flex fixed top-0 w-full justify-center z-50 transition-all duration-300 ease-in-out ${
             isScroll
               ? "shadow-lg transition-all bg-neutral-900/90 duration-300 ease-in-out backdrop-blur-md border-b border-neutral-700/50"
               : "bg-neutral-900 transition-all duration-300 ease-in-out border-b border-neutral-700/0"

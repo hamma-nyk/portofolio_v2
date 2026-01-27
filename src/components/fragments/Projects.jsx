@@ -1,16 +1,118 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import ProjectCard from "../elements/ProjectCard";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
+
+// 🔹 Sub-Component: ProjectSlider
+// Menangani logika Next/Prev untuk setiap kategori
+const ProjectSlider = ({ title, projects, gradientColor }) => {
+  const ITEMS_PER_PAGE = 2; // Tampilkan 4 item per halaman
+  const [currentPage, setCurrentPage] = useState(0);
+  const [direction, setDirection] = useState(0); // 1 = Next, -1 = Prev
+
+  const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
+  const hasMultiplePages = totalPages > 1;
+
+  // Logika Pagination
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentPage((prev) => (prev + 1) % totalPages); // Loop kembali ke awal
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages); // Loop ke akhir
+  };
+
+  // Data yang ditampilkan saat ini (hanya 4 item)
+  const currentProjects = projects.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE,
+  );
+
+  // Animasi Slide
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? -50 : 50,
+      opacity: 0,
+    }),
+  };
+
+  return (
+    <div className="w-full mb-24">
+      {/* --- Header Kategori & Kontrol Navigasi --- */}
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4 flex-grow">
+          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+            {title}
+          </h2>
+          <div
+            className={`h-[1px] flex-grow bg-gradient-to-r from-${gradientColor}-500/30 to-transparent`}
+          ></div>
+        </div>
+
+        {/* Tombol Navigasi (Hanya muncul jika lebih dari 1 halaman) */}
+        {hasMultiplePages && (
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-mono text-gray-500 mr-2">
+              Page {currentPage + 1}/{totalPages}
+            </span>
+            <button
+              onClick={handlePrev}
+              className="p-2 rounded-full bg-neutral-800 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-2 rounded-full bg-neutral-800 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* --- Grid Projects (Slider Area) --- */}
+      {/* min-h menjaga tinggi agar tidak layout shift saat ganti halaman */}
+      <div className="relative min-h-[100px]">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={currentPage} // Key berubah = trigger animasi ulang
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+          >
+            {currentProjects.map((project, i) => (
+              <ProjectCard key={`${title}-${i}`} {...project} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
 
 const Projects = ({ goto }) => {
+  // --- DATA PROJECTS ---
   const infra = [
     {
       title: "Topology Design and Implementation of Network Infrastructure",
       img: "./assets/image/networking.png",
       desc: "PT Nusantara Building Industries",
-      descModal: `- Design network topology
-        - Fiber Optic installation
-        - Network infrastructure management & installation`,
-
+      descModal: `- Design network topology\n- Fiber Optic installation\n- Network infrastructure management & installation`,
       tech: ["draw.io", "Mikrotik", "Ruijie", "Ubiquiti", "Fiber Optic"],
     },
     {
@@ -23,9 +125,7 @@ const Projects = ({ goto }) => {
       title: "TrueNAS and ESXi Infrastructure Management",
       img: "./assets/image/truenas.png",
       desc: "PT Nusantara Building Industries",
-      descModal: `- TrueNAS & ESXi installation
-        - User storage pool & group management
-        - VM & Server management`,
+      descModal: `- TrueNAS & ESXi installation\n- User storage pool & group management\n- VM & Server management`,
       tech: ["TrueNAS", "ESXi", "Linux"],
     },
     {
@@ -35,6 +135,7 @@ const Projects = ({ goto }) => {
       tech: ["SocketIO", "NodeJS", "SSH"],
     },
   ];
+
   const webProjects = [
     {
       title: "English Word Suggestion",
@@ -136,13 +237,13 @@ const Projects = ({ goto }) => {
         ref={goto}
         className="relative w-full py-24 px-4 overflow-hidden min-h-screen"
       >
-        {/* --- Background Glow Effects (Agar seragam dengan Contact) --- */}
+        {/* --- Background Glow Effects --- */}
         <div className="absolute top-50 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-50 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* --- Header Utama --- */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
               Featured{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
@@ -164,60 +265,28 @@ const Projects = ({ goto }) => {
             </p>
           </div>
 
-          {/* --- Bagian 1: Web App Projects --- */}
-          <div className="w-full mb-20">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-white to-blue-300"></span> */}
-                Network & IT Insfrastuctur
-              </h2>
-              {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-purple-500/30 to-transparent"></div>
-            </div>
+          {/* --- Category Sliders --- */}
 
-            {/* Grid diset max 2 kolom untuk layout Horizontal Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {infra.map((inf, i) => (
-                <ProjectCard key={i} {...inf} />
-              ))}
-            </div>
-          </div>
+          {/* 1. Infrastructure (Jumlah < 4, Tombol Next tidak akan muncul) */}
+          <ProjectSlider
+            title="Network & IT Infrastructure"
+            projects={infra}
+            gradientColor="purple"
+          />
 
-          <div className="w-full mb-20">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-blue-400 to-cyan-300"></span> */}
-                Web Apps
-              </h2>
-              {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-blue-500/30 to-transparent"></div>
-            </div>
+          {/* 2. Web Apps (Jumlah > 4, Tombol Next muncul) */}
+          <ProjectSlider
+            title="Web Apps"
+            projects={webProjects}
+            gradientColor="blue"
+          />
 
-            {/* Grid diset max 2 kolom untuk layout Horizontal Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {webProjects.map((project, i) => (
-                <ProjectCard key={i} {...project} />
-              ))}
-            </div>
-          </div>
-
-          {/* --- Bagian 2: Desktop App Projects --- */}
-          <div className="w-full">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-                {/* <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-400 to-pink-300"></span> */}
-                Desktop Apps
-              </h2>
-              {/* Garis Divider dengan Gradient Fade */}
-              <div className="h-[1px] flex-grow bg-gradient-to-r from-purple-500/30 to-transparent"></div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {desktopProjects.map((project, i) => (
-                <ProjectCard key={i} {...project} />
-              ))}
-            </div>
-          </div>
+          {/* 3. Desktop Apps (Jumlah > 4, Tombol Next muncul) */}
+          <ProjectSlider
+            title="Desktop Apps"
+            projects={desktopProjects}
+            gradientColor="purple"
+          />
         </div>
       </section>
     </Fragment>
