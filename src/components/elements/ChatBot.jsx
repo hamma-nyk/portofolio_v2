@@ -17,8 +17,9 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       role: "system",
-      content:
-        "Halo! 👋 Saya Iko (versi virtual). Silakan tanya apa saja tentang pengalaman kerja, skill, atau proyek saya. Saya siap menjawab!",
+      content: `Halo! 👋 Saya Iko. Tanya apa saja soal skill, pengalaman, atau proyek saya!
+.............
+Hey! 👋 I’m Iko. Feel free to ask about my skills, work experience, or projects.`,
     },
   ]);
 
@@ -149,7 +150,7 @@ const ChatBot = () => {
 
                   {/* Bubble */}
                   <div
-                    className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[80%] ${
+                    className={`p-3 rounded-2xl text-sm leading-relaxed whitespace-pre-line max-w-[80%] ${
                       msg.role === "user"
                         ? "bg-purple-500/20 text-purple-100 rounded-tr-none border border-purple-500/20"
                         : "bg-blue-600/20 text-blue-50 rounded-tl-none border border-blue-500/20"
@@ -164,11 +165,11 @@ const ChatBot = () => {
               {isLoading && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
-                    <Bot size={14} className="text-blue-400" />
+                    <Sparkles size={14} className="text-blue-400" />
                   </div>
                   <div className="p-3 rounded-2xl rounded-tl-none bg-neutral-800 border border-neutral-700 flex items-center gap-2">
                     <Loader2 size={16} className="text-blue-400 animate-spin" />
-                    <span className="text-xs text-gray-400">Thinking...</span>
+                    <span className="text-xs text-gray-400">Typing...</span>
                   </div>
                 </div>
               )}
