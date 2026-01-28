@@ -50,6 +50,7 @@ Hi! 👋 I’m **Asia**, Iko’s personal assistant. Ask me anything about Iko�
         headers: {
           "Content-Type": "application/json",
           // "Authorization": "Bearer TOKEN_JIKA_ADA"
+          "X-Secret-Token": "alahtempek-123",
         },
         body: JSON.stringify({ message: input }), // Sesuaikan body dengan API Anda
       });
