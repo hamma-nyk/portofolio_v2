@@ -1,8 +1,16 @@
 import { Fragment, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
-  const [open, setOpen] = useState(false);
+const ExperienceCard = ({
+  title,
+  img,
+  position,
+  date,
+  side,
+  jobdesk = [],
+  defaultOpen = false,
+}) => {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <Fragment>
@@ -51,7 +59,11 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
             </div>
           </div>
 
-          <p className="text-gray-300 text-sm mt-2">{date}</p>
+          <div className="mt-3 mb-1">
+            <span className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-medium rounded-full shadow-sm">
+              {date}
+            </span>
+          </div>
 
           {/* Expandable content */}
           <div
@@ -60,7 +72,7 @@ const ExperienceCard = ({ title, img, position, date, side, jobdesk = [] }) => {
             }`}
           >
             <ul
-              className={`text-gray-300 text-sm list-disc list-outside leading-relaxed space-y-1 ${
+              className={`text-gray-300 text-sm list-disc list-outside leading-relaxed space-y-1 marker:text-purple-400 ${
                 side === "right" ? "pl-5 text-left" : "pl-5 text-left"
               }`}
             >

@@ -74,13 +74,13 @@ const ProjectSlider = ({ title, projects, gradientColor }) => {
             </span>
             <button
               onClick={handlePrev}
-              className="p-2 rounded-full bg-neutral-800/80 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
+              className="cursor-pointer p-2 rounded-full bg-neutral-800/80 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={handleNext}
-              className="p-2 rounded-full bg-neutral-800/80 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
+              className="cursor-pointer p-2 rounded-full bg-neutral-800/80 border border-neutral-700 hover:border-blue-500/50 hover:text-blue-400 transition-all active:scale-95"
             >
               <ChevronRight size={18} />
             </button>
@@ -206,7 +206,7 @@ const Projects = ({ goto }) => {
     {
       title: "MDB Access to SQL Server",
       img: "./assets/image/mdbconvert.png",
-      desc: "Shcedule and convert data from Local machine MDB to SQL Server",
+      desc: "Shcedule and convert data from MDB to SQL Server",
       descModal: "This tools is for local use. Contact me if you want a demo.",
       tech: ["Python", "Pyodbc"],
     },
@@ -231,7 +231,7 @@ const Projects = ({ goto }) => {
     {
       title: "Desktop Telegram Broadcast Tools",
       img: "./assets/image/tgbroadcast.png",
-      desc: "This tool is used to broadcast messages to multiple Telegram groups.",
+      desc: "Broadcast messages to multiple Telegram groups.",
       tech: ["Python"],
       descModal: "This tools is for sale. Contact me if you are interested.",
     },

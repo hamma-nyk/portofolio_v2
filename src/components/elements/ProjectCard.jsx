@@ -27,35 +27,39 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
       </div>
 
       {/* --- Bagian KANAN: Konten --- */}
-      <div className="w-2/3 p-4 flex flex-col justify-between">
-        <div>
-          <h2 className="text-lg font-bold text-gray-100 leading-tight transition-colors line-clamp-1 mb-2">
+      <div className="w-2/3 p-3 sm:p-4 flex flex-col h-full">
+        <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
+          <h2 className="text-base sm:text-lg font-bold text-gray-100 leading-tight transition-colors line-clamp-1 mb-1.5 sm:mb-2 shrink-0">
             {title}
           </h2>
 
           {desc && (
-            <p className="text-gray-400 text-xs leading-relaxed line-clamp-2 mb-3">
-              {desc}
-            </p>
+            <div
+              className={`mb-2 px-2.5 sm:px-3 py-1 rounded-lg border w-fit max-w-full overflow-hidden shrink-0 ${
+                desc.length % 2 === 0
+                  ? "bg-purple-500/10 border-purple-500/20 text-purple-200"
+                  : "bg-blue-500/10 border-blue-500/20 text-blue-200"
+              }`}
+            >
+              {/* Di layar HP (h-32) dibatasi 1 baris, di layar besar (h-40) 2 baris */}
+              <p className="text-[10px] sm:text-xs leading-relaxed line-clamp-1 sm:line-clamp-2">
+                {desc}
+              </p>
+            </div>
           )}
         </div>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1.5 mt-auto">
+        <div className="flex flex-wrap gap-1.5 mt-auto shrink-0">
           {tech &&
-            tech.slice(0, 3).map(
-              (
-                t,
-                idx, // Max 3 item biar rapi di layout horizontal
-              ) => (
-                <span
-                  key={idx}
-                  className="text-[10px] font-medium bg-neutral-800 border border-neutral-700 text-gray-300 px-2 py-0.5 rounded-full"
-                >
-                  {t}
-                </span>
-              ),
-            )}
+            tech.slice(0, 3).map((t, idx) => (
+              <span
+                key={idx}
+                className="text-[10px] font-medium bg-neutral-800 border border-neutral-700 text-gray-300 px-2 py-0.5 rounded-full"
+              >
+                {t}
+              </span>
+            ))}
           {tech && tech.length > 3 && (
             <span className="text-[10px] text-gray-500 px-1 py-0.5">
               +{tech.length - 3}
@@ -124,7 +128,7 @@ const ProjectCard = ({ title, img, link, desc, tech, descModal, preview }) => {
                   >
                     <X size={18} />
                   </button>
-                  <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg pr-3">
+                  <h2 className="absolute bottom-2 left-6 text-2xl font-bold text-white shadow-black drop-shadow-lg pr-3">
                     {title}
                   </h2>
                 </div>

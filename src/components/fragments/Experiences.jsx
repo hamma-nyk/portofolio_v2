@@ -115,6 +115,7 @@ const Experiences = (props) => {
                   key={i}
                   {...exp}
                   side={i % 2 === 0 ? "left" : "right"}
+                  defaultOpen={i === 0}
                 />
               ))}
             </div>
