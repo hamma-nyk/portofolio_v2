@@ -1,6 +1,7 @@
 import { Fragment, useState, useRef } from "react";
 import emailjs from "emailjs-com";
 import { Mail, Send, User, MessageSquare, AtSign, Hash } from "lucide-react"; // Pastikan import icon ini
+import { motion } from "framer-motion";
 
 const Message = ({ goto }) => {
   const [sending, setSending] = useState(false);
@@ -34,6 +35,25 @@ const Message = ({ goto }) => {
       );
   };
 
+  // --- Tambahkan konfigurasi animasi ini sebelum return ---
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05, delayChildren: 0.1 },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { filter: "blur(12px)", opacity: 0, y: 10 },
+    visible: {
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+  // ---------------------------------------------------------
   const sendMessage = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -77,20 +97,47 @@ const Message = ({ goto }) => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl font-bold text-center text-white mb-6 tracking-tight">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-5xl font-bold text-center text-white mb-6 tracking-tight"
+          >
             Get in{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
               Touch
             </span>
-          </h1>
+          </motion.h1>
 
-          <p className="w-11/12 sm:w-1/2 mx-auto text-center text-gray-400 mb-12 leading-relaxed text-sm sm:text-base">
-            Have a project in mind or just want to chat? Choose your preferred
-            platform below.
-          </p>
+          <motion.p
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            className="w-11/12 sm:w-1/2 mx-auto flex mb-10 flex-wrap justify-center text-center text-gray-400 leading-relaxed text-sm sm:text-base"
+          >
+            {"Have a project in mind or just want to chat? Choose your preferred platform below."
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`msg-${i}`}
+                  variants={wordVariants}
+                  className="mr-[0.25em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+          </motion.p>
 
           {/* --- Tab Switcher Modern --- */}
-          <div className="flex justify-center mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="flex justify-center mb-10"
+          >
             <div className="relative flex bg-neutral-800/80 p-1.5 rounded-full border border-neutral-700 shadow-lg w-72">
               {/* Sliding Background */}
               <div
@@ -131,10 +178,17 @@ const Message = ({ goto }) => {
                 <Send size={16} /> Telegram
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* --- Unified Form Container --- */}
-          <div className="w-full flex justify-center px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="w-full flex justify-center px-4"
+          >
+            {" "}
             <div className="w-full max-w-lg transition-all duration-500">
               <div
                 // className={`relative bg-neutral-800/50 backdrop-blur-md border rounded-3xl p-8 shadow-lg transition-all duration-500 ${
@@ -297,7 +351,7 @@ const Message = ({ goto }) => {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </Fragment>

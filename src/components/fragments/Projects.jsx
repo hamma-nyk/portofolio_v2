@@ -56,19 +56,40 @@ const ProjectSlider = ({ title, projects, gradientColor }) => {
   return (
     <div className="w-full mb-24">
       {/* --- Header Kategori & Kontrol Navigasi --- */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+      {/* --- Header Kategori & Kontrol Navigasi --- */}
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-8 overflow-hidden">
         <div className="flex items-center gap-4 flex-grow">
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+          {/* Judul Kategori: Slide in dari kiri */}
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold text-white flex items-center gap-2"
+          >
             {title}
-          </h2>
-          <div
+          </motion.h2>
+
+          {/* Garis Divider: Efek memanjang (scaleX) dari kiri ke kanan */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            style={{ transformOrigin: "left" }} // Kunci agar memanjang dari kiri
             className={`h-[1px] flex-grow bg-gradient-to-r ${activeGradient} to-transparent`}
-          ></div>
+          ></motion.div>
         </div>
 
-        {/* Tombol Navigasi (Hanya muncul jika lebih dari 1 halaman) */}
+        {/* Tombol Navigasi: Slide in dari kanan */}
         {hasMultiplePages && (
-          <div className="flex items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3"
+          >
             <span className="text-xs font-mono text-gray-500 mr-2">
               Page {currentPage + 1}/{totalPages}
             </span>
@@ -84,7 +105,7 @@ const ProjectSlider = ({ title, projects, gradientColor }) => {
             >
               <ChevronRight size={18} />
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -237,6 +258,29 @@ const Projects = ({ goto }) => {
     },
   ];
 
+  // Konfigurasi container untuk mengatur antrean (stagger) antar kata
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05, // Kecepatan muncul antar kata (0.05 detik)
+        delayChildren: 0.1, // Jeda sebelum kata pertama muncul
+      },
+    },
+  };
+
+  // Konfigurasi efek blur & geser untuk masing-masing kata
+  const wordVariants = {
+    hidden: { filter: "blur(12px)", opacity: 0, y: 10 },
+    visible: {
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
   return (
     <Fragment>
       <section
@@ -250,45 +294,81 @@ const Projects = ({ goto }) => {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* --- Header Utama --- */}
-          <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="text-center mb-20"
+          >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
               Featured{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Projects
               </span>
             </h1>
-            <p className="w-full sm:w-2/3 mx-auto text-gray-400 leading-relaxed text-sm sm:text-base">
-              A showcase of my technical explorations, reflecting my passion for
-              <span className="text-blue-400 font-semibold">
-                {" "}
+            <motion.p
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              className="w-full sm:w-2/3 mx-auto flex flex-wrap justify-center text-gray-400 leading-relaxed text-sm sm:text-base"
+            >
+              {/* Bagian Teks Biasa */}
+              {"A showcase of my technical explorations, reflecting my passion for"
+                .split(" ")
+                .map((word, i) => (
+                  <motion.span
+                    key={`text1-${i}`}
+                    variants={wordVariants}
+                    className="mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+
+              {/* Teks dengan Warna Khusus (Inovasi) */}
+              <motion.span
+                variants={wordVariants}
+                className="text-blue-400 font-semibold mr-[0.25em]"
+              >
                 innovation
-              </span>{" "}
-              and
-              <span className="text-purple-400 font-semibold">
-                {" "}
+              </motion.span>
+
+              <motion.span variants={wordVariants} className="mr-[0.25em]">
+                and
+              </motion.span>
+
+              {/* Teks dengan Warna Khusus (Problem Solving) */}
+              <motion.span
+                variants={wordVariants}
+                className="text-purple-400 font-semibold mr-[0.1em]"
+              >
                 problem-solving
-              </span>
-              .
-            </p>
-          </div>
+              </motion.span>
+
+              <motion.span variants={wordVariants}>.</motion.span>
+            </motion.p>
+          </motion.div>
 
           {/* --- Category Sliders --- */}
 
-          {/* 1. Infrastructure (Jumlah < 4, Tombol Next tidak akan muncul) */}
           <ProjectSlider
             title="Network & IT Infrastructure"
             projects={infra}
             gradientColor="purple"
           />
 
-          {/* 2. Web Apps (Jumlah > 4, Tombol Next muncul) */}
+          {/* 2. Web Apps */}
+
           <ProjectSlider
             title="Web Apps"
             projects={webProjects}
             gradientColor="blue"
           />
 
-          {/* 3. Desktop Apps (Jumlah > 4, Tombol Next muncul) */}
+          {/* 3. Desktop Apps */}
+
           <ProjectSlider
             title="Desktop Apps"
             projects={desktopProjects}

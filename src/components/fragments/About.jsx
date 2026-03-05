@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import ButtonCard from "../elements/ButtonCard";
 import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 import { MonitorCog, CodeXml, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 import {
   SiReact,
@@ -53,6 +54,29 @@ const About = (props) => {
     },
   ];
 
+  // Konfigurasi container untuk antrean kata
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05, // Kecepatan muncul per kata
+        delayChildren: 0.1, // Jeda sebelum mulai
+      },
+    },
+  };
+
+  // Konfigurasi efek tiap kata
+  const wordVariants = {
+    hidden: { filter: "blur(12px)", opacity: 0, y: 10 },
+    visible: {
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  };
+
   return (
     <Fragment>
       <section
@@ -66,34 +90,92 @@ const About = (props) => {
 
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           {/* --- Header Utama --- */}
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }} // Animasi jalan 1x saat 20% elemen terlihat
+            className="text-center mb-16"
+          >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
               About{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Me
               </span>
             </h1>
-            <p className="w-full sm:w-2/3 mx-auto text-gray-400 leading-relaxed text-sm sm:text-base">
-              Hello! 👋 I work in two areas that I really enjoy:
-              <span className="text-blue-400 font-semibold">
-                {" "}
+            {/* Paragraf dengan efek Staggered Word Blur */}
+            <motion.p
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              className="w-full sm:w-2/3 mx-auto flex flex-wrap justify-center text-gray-400 leading-relaxed text-sm sm:text-base"
+            >
+              {/* Kalimat Pembuka */}
+              {"Hello! 👋 I work in two areas that I really enjoy:"
+                .split(" ")
+                .map((word, i) => (
+                  <motion.span
+                    key={`about1-${i}`}
+                    variants={wordVariants}
+                    className="mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+
+              {/* Highlight 1 (Biru) */}
+              <motion.span
+                variants={wordVariants}
+                className="text-blue-400 font-semibold mr-[0.25em]"
+              >
                 IT Support
-              </span>{" "}
-              and
-              <span className="text-purple-400 font-semibold">
-                {" "}
+              </motion.span>
+
+              {/* Kata sambung */}
+              <motion.span variants={wordVariants} className="mr-[0.25em]">
+                and
+              </motion.span>
+
+              {/* Highlight 2 (Ungu) - TANPA margin right agar titik bisa menempel */}
+              <motion.span
+                variants={wordVariants}
+                className="text-purple-400 font-semibold"
+              >
                 App Development
-              </span>
-              . They’re different fields, but both teach me how technology helps
-              people do their work better.
-            </p>
-          </div>
+              </motion.span>
+
+              {/* Tanda Titik (menempel dengan kata sebelumnya) */}
+              <motion.span variants={wordVariants} className="mr-[0.25em]">
+                .
+              </motion.span>
+
+              {/* Kalimat Penutup */}
+              {"They’re different fields, but both teach me how technology helps people do their work better."
+                .split(" ")
+                .map((word, i) => (
+                  <motion.span
+                    key={`about2-${i}`}
+                    variants={wordVariants}
+                    className="mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+            </motion.p>
+          </motion.div>
 
           {/* --- Cards Container --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* === CARD 1: IT SUPPORT === */}
             {/* <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20"> */}
-            <div className="group relative bg-neutral-800/50 border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="group relative bg-neutral-800/50 border border-neutral-700 hover:border-blue-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20"
+            >
               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
               <div className="relative z-10 flex flex-col h-full">
@@ -141,10 +223,16 @@ const About = (props) => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* === CARD 2: APP DEVELOPER === */}
-            <div className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-purple-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="group relative bg-neutral-800/50 backdrop-blur-md border border-neutral-700 hover:border-purple-500/30 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-black/20"
+            >
               <div className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
               <div className="relative z-10 flex flex-col h-full">
@@ -184,7 +272,7 @@ const About = (props) => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

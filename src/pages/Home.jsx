@@ -29,6 +29,28 @@ const Home = () => {
   // 1. Tambahkan State untuk menyimpan section mana yang sedang aktif
   const [activeNav, setActiveNav] = useState("home");
 
+  // --- Varians untuk Animasi Staggered Text ---
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08, // Kecepatan muncul per kata sedikit diperlambat untuk kesan dramatis
+        delayChildren: 0.2, // Jeda sebelum kata pertama muncul setelah load
+      },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { filter: "blur(12px)", opacity: 0, y: 10 },
+    visible: {
+      filter: "blur(0px)",
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   // 2. Gunakan useEffect untuk mendeteksi posisi scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -235,17 +257,49 @@ const Home = () => {
           className="flex flex-col mx-auto justify-center"
         >
           <div className="flex flex-col h-screen w-full items-start justify-center">
-            <h1 className="text-3xl sm:text-5xl font-[700] px-5 relative text-white">
-              {" "}
-              Hello there! <span className="sm:inline">😹</span>
-              <br />
-              You can call me{" "}
-              <span className="text-3xl sm:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400">
-                Iko
-              </span>
-              <br />
-              <div
-                className="inline-block overflow-hidden align-top mt-1"
+            {/* 1. TEXT ANIMATION (Staggered Word Blur) */}
+            <motion.h1
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-3xl sm:text-5xl font-[700] px-5 relative text-white mb-6 leading-tight"
+            >
+              <div className="flex flex-wrap items-center">
+                {"Hello there!".split(" ").map((word, i) => (
+                  <motion.span
+                    key={`h1-${i}`}
+                    variants={wordVariants}
+                    className="mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+                <motion.span variants={wordVariants}>😹</motion.span>
+              </div>
+
+              <div className="flex flex-wrap items-center mt-2">
+                {"You can call me".split(" ").map((word, i) => (
+                  <motion.span
+                    key={`h2-${i}`}
+                    variants={wordVariants}
+                    className="mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+                <motion.span
+                  variants={wordVariants}
+                  className="text-3xl sm:text-5xl font-[700] text-transparent bg-clip-text bg-gradient-to-br from-pink-400 via-purple-500 to-blue-400"
+                >
+                  Iko
+                </motion.span>
+              </div>
+
+              {/* Dynamic Text (Tetap menggunakan efek bawaan Anda, tapi dibungkus motion.div untuk ikut antrean stagger awal) */}
+              <motion.div
+                variants={wordVariants}
+                className="inline-block overflow-hidden align-top mt-2"
                 style={{
                   height: "1.2em",
                   minWidth: maxWidth ? `${maxWidth}px` : "auto",
@@ -263,7 +317,8 @@ const Home = () => {
                     {words[index]}
                   </motion.span>
                 </AnimatePresence>
-              </div>
+              </motion.div>
+
               {/* 🔹 Hidden element for width measurement */}
               <span
                 ref={measureRef}
@@ -271,9 +326,17 @@ const Home = () => {
               >
                 I'm a Web Developer
               </span>
-            </h1>
+            </motion.h1>
 
-            <CodeTemplate />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }} // Muncul setelah teks selesai
+              viewport={{ once: true }}
+              className="w-full"
+            >
+              <CodeTemplate />
+            </motion.div>
             {/*<div className="flex gap-3 sm:gap-4 pt-10 text-sm px-5">
               <ButtonHome
                 link="#"
@@ -295,7 +358,13 @@ const Home = () => {
               />
             </div>*/}
             {/* 3. UNIFIED BUTTONS (Satu Tema) */}
-            <div className="flex flex-wrap gap-2 sm:gap-4 pl-2 sm:pl-5">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1, ease: "easeOut" }} // Muncul paling akhir
+              viewport={{ once: true }}
+              className="flex flex-wrap gap-2 sm:gap-4 pl-5 sm:pl-5"
+            >
               {[
                 {
                   text: "Download CV",
@@ -341,7 +410,7 @@ const Home = () => {
                   </div>
                 </a>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
